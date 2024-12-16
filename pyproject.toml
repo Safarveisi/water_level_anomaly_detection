@@ -1,16 +1,19 @@
 [tool.poetry]
+name = "water-level-anomaly-detection"
+version = "0.1.0"
 description = "Water level anomaly detection"
 authors = ["Sajad Safarveisi"]
 readme = "README.md"
-package-mode = false
+packages = [{include = "water_level_anomaly_detection"}]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.10"
+python = ">=3.9,<3.9.7 || >3.9.7,<3.10"
 requests = "^2.32.3"
 pandas = "^2.2.2"
 matplotlib = "^3.9.0"
 torch = {version = "2.3.0", source = "pytorch_cpu"}
 scikit-learn = "^1.6.0"
+streamlit = "^1.41.1"
 
 
 [tool.poetry.group.dev.dependencies]
