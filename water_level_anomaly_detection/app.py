@@ -51,6 +51,7 @@ uuid = st.selectbox("Station UUID", get_stations_uuid())
 
 # Retrieve data for the selected station (reference + prediction)
 df_ref, df_pred = get_station_data(uuid=uuid)
+
 if df_pred is None or df_ref is None:
     st.write(
         "There are no new measurements for the requested station. "

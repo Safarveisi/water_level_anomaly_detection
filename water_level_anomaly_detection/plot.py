@@ -4,6 +4,8 @@ from matplotlib.dates import DateFormatter
 import pandas as pd
 
 
+plt.style.use("fivethirtyeight")
+
 def plot_detection(df: pd.DataFrame) -> plt.Figure:
 
     fig, ax = plt.subplots(figsize=(11, 7))
@@ -55,7 +57,8 @@ def plot_reference_data(df: pd.DataFrame) -> plt.Figure:
         df["value"],
         "o-",
         label=f"Reference",
-        color="green",
+        color="#adad3b",
+        linewidth=3
     )
 
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))
