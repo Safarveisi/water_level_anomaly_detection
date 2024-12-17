@@ -1,16 +1,28 @@
-## Unsupervised Novelty Detection using the Local Outlier Factor (LOF)
+# Unsupervised Novelty Detection Using the Local Outlier Factor (LOF)
 
-Novelty detection is commonly applied in scenarios where you have a set of "normal" data without any anomalies, and the objective is to identify "new" or "novel" data points that deviate from this normal model. It does not assume contamination in the training data, meaning it presumes the reference data used to learn the normal behavior is free of outliers. Novelty detection is useful in contexts where the notion of "novel" is relative to a known baseline of normal and is applied as new data comes in.
-
-Note that this is different from outlier detection where the assumption is that the dataset you are working with is mostly clean but may contain some outliers.
+Novelty detection is a critical technique used in scenarios where a set of "normal" data is available and the aim is to identify "new" or "novel" data points that deviate from this established norm. Unlike outlier detection, which assumes the dataset may be mostly clean while containing a few outliers, novelty detection presumes the reference data for training is devoid of any anomalies. This approach is highly beneficial in environments where the concept of "novel" is relative to a predefined baseline of normalcy, and is applicable as incoming data is continuously assessed.
 
 ## Usage
 
+To use the application, run the Docker container in detached mode. The app is deployed as a [Streamlit](https://streamlit.io/) dashboard and is accessible on port `8502` of your localhost. Users can select a station UUID from the `selectbox` to view near real-time water level measurements over the last hour (the prediction window) and detect any novelties. The unsupervised machine learning model is trained on a six-hour reference period, allowing it to identify novelties within the prediction window effectively.
+
+```bash
+./run-docker-app 0.1.0
+
+
+```
+
+## About the API
+
+[PEGELONLINE](https://www.pegelonline.wsv.de/webservice/ueberblick) provides web services that publish real-time raw data of various hydrological parameters, such as water levels, from federal waterways for up to 30 days retrospectively. These web services are free to use, although the data is provided "as is" without verification from the managing waterway and shipping offices.
+
+## Table of files and directories
+
 |           File/Directory        |             Description           |
 |:-------------------------------:|:---------------------------------:|
-| `water_level_anomaly_detection` | All the source code for the app |
-| `.python-version` | Specifies the python version with which the app is developed |
-| `build-image.sh` | Shell script to build the docker image and direct the logs into a file (build.log) |
-| `Dockerfile` | Instructions to build the docker image |
-| `run-docker-app.sh` | Shell script to run the docker container (and the app) |
-| `setup-env.sh` | Shell script to set up the virtual env and install necessary dependencies (dev) | 
+| `water_level_anomaly_detection` | Contains all source code for the application. |
+| `.python-version` | Specifies the Python version used in app development. |
+| `build-image.sh` | Script to build the Docker image; logs are directed to `build.log`. |
+| `Dockerfile` | Provides instructions to build the Docker image. |
+| `run-docker-app.sh` | Script to launch the Docker container and instantiate the app. |
+| `setup-env.sh` | Script to set up the virtual environment and install development dependencies in the dev mode. | 
