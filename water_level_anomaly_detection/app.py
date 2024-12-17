@@ -1,7 +1,7 @@
 from typing import Tuple, Optional
-from water_level_anomaly_detection.etl import get_station_measurements
-from water_level_anomaly_detection.stations import get_stations_uuid
-from water_level_anomaly_detection.plot import plot_detection
+from etl import get_station_measurements
+from stations import get_stations_uuid
+from plot import plot_detection
 from sklearn.neighbors import LocalOutlierFactor
 import pandas as pd
 import streamlit as st

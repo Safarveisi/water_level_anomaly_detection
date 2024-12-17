@@ -1,0 +1,7 @@
+poetry.toml
+Dockerfile
+.venv
+*.sh
+*.ipynb
+.python-version
+README.md
