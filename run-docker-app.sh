@@ -1,7 +1,7 @@
 # Version of the app
 v=$1
 
-# Maps port 8501 of the docker into 8502 of the local host
+# Maps port 8501 of the container into 8502 of the local host
 container_id=$(docker run -d -p 8502:8501 ciaa/novelty:$v)
 
 cleanup() {
