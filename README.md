@@ -8,9 +8,9 @@ Note that this is different from outlier detection where the assumption is that 
 
 |           File/Directory        |             Description           |
 |:-------------------------------:|:---------------------------------:|
-| water_level_anomaly_detection | All the source code for the app |
-| .python-version | Specifies the python version with which the app is developed |
-| build-image.sh | Shell script to build the docker image and direct the logs into a file (build.log) |
-| Dockerfile | Instructions to build the docker image |
-| run-docker-app.sh | Shell script to run the docker container (and the app) |
-| setup-env.sh | Shell script to set up the virtual env and install necessary dependencies (dev) | 
+| `water_level_anomaly_detection` | All the source code for the app |
+| `.python-version` | Specifies the python version with which the app is developed |
+| `build-image.sh` | Shell script to build the docker image and direct the logs into a file (build.log) |
+| `Dockerfile` | Instructions to build the docker image |
+| `run-docker-app.sh` | Shell script to run the docker container (and the app) |
+| `setup-env.sh` | Shell script to set up the virtual env and install necessary dependencies (dev) | 
