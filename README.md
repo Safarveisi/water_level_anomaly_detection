@@ -7,8 +7,10 @@ Novelty detection is a critical technique used in scenarios where a set of "norm
 To use the application, run the Docker container in detached mode. The app is deployed as a [Streamlit](https://streamlit.io/) dashboard and is accessible on port `8502` of your localhost. Users can select a station UUID from the `selectbox` to view water level measurements over the last hour (the prediction window) and detect any novelties. The unsupervised machine learning model is trained on a six-hour reference period, allowing it to identify novelties within the prediction window effectively.
 
 ```bash
-./run-docker-app <tag of the docker image>
-
+# Make sure the docker image is available
+./build-image.sh <tag of the docker image>
+# Run a container in detached mode
+./run-docker-app.sh <tag of the docker image>
 
 ```
 

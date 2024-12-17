@@ -4,11 +4,14 @@
 #1 transferring dockerfile: 575B done
 #1 DONE 0.0s
 
-#2 [auth] library/python:pull token for registry-1.docker.io
-#2 DONE 0.0s
+#2 [internal] load metadata for docker.io/library/python:3.9-slim
+#2 ...
 
-#3 [internal] load metadata for docker.io/library/python:3.9-slim
-#3 DONE 0.7s
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.9-slim
+#2 DONE 1.6s
 
 #4 [internal] load .dockerignore
 #4 transferring context: 107B done
@@ -18,105 +21,105 @@
 #5 CACHED
 
 #6 [internal] load build context
-#6 transferring context: 2.84kB done
+#6 transferring context: 6.79kB done
 #6 DONE 0.0s
 
 #7 [2/5] RUN useradd -m -d /home/ssafarveisi ssafarveisi &&     chown -R ssafarveisi /home/ssafarveisi &&     apt-get update && apt-get install -y curl &&     rm -rf /var/lib/apt/lists/*
-#7 0.394 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
-#7 0.417 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
-#7 0.419 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
-#7 0.494 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8789 kB]
-#7 0.590 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [8856 B]
-#7 0.609 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [217 kB]
-#7 1.143 Fetched 9269 kB in 1s (11.7 MB/s)
-#7 1.143 Reading package lists...
-#7 1.432 Reading package lists...
-#7 1.721 Building dependency tree...
-#7 1.781 Reading state information...
-#7 1.849 The following additional packages will be installed:
-#7 1.849   libbrotli1 libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5
-#7 1.849   librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1
-#7 1.849   publicsuffix
-#7 1.849 Suggested packages:
-#7 1.849   libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal
-#7 1.849   libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
-#7 1.918 The following NEW packages will be installed:
-#7 1.918   curl libbrotli1 libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5
-#7 1.918   librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1
-#7 1.918   publicsuffix
-#7 1.940 0 upgraded, 13 newly installed, 0 to remove and 0 not upgraded.
-#7 1.940 Need to get 1837 kB of archives.
-#7 1.940 After this operation, 4548 kB of additional disk space will be used.
-#7 1.940 Get:1 http://deb.debian.org/debian bookworm/main amd64 libbrotli1 amd64 1.0.9-2+b6 [275 kB]
-#7 1.965 Get:2 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg-10 [20.3 kB]
-#7 1.966 Get:3 http://deb.debian.org/debian bookworm/main amd64 libsasl2-2 amd64 2.1.28+dfsg-10 [59.7 kB]
-#7 1.967 Get:4 http://deb.debian.org/debian bookworm/main amd64 libldap-2.5-0 amd64 2.5.13+dfsg-5 [183 kB]
-#7 1.970 Get:5 http://deb.debian.org/debian bookworm/main amd64 libnghttp2-14 amd64 1.52.0-1+deb12u2 [73.0 kB]
-#7 1.971 Get:6 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
-#7 1.972 Get:7 http://deb.debian.org/debian bookworm/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b2 [60.8 kB]
-#7 1.973 Get:8 http://deb.debian.org/debian bookworm/main amd64 libssh2-1 amd64 1.10.0-3+b1 [179 kB]
-#7 1.974 Get:9 http://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u8 [390 kB]
-#7 1.978 Get:10 http://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u8 [315 kB]
-#7 1.981 Get:11 http://deb.debian.org/debian bookworm/main amd64 libldap-common all 2.5.13+dfsg-5 [29.3 kB]
-#7 1.982 Get:12 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules amd64 2.1.28+dfsg-10 [66.6 kB]
-#7 1.982 Get:13 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
-#7 2.081 debconf: delaying package configuration, since apt-utils is not installed
-#7 2.120 Fetched 1837 kB in 0s (29.7 MB/s)
-#7 2.172 Selecting previously unselected package libbrotli1:amd64.
-#7 2.172 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6686 files and directories currently installed.)
-#7 2.181 Preparing to unpack .../00-libbrotli1_1.0.9-2+b6_amd64.deb ...
-#7 2.205 Unpacking libbrotli1:amd64 (1.0.9-2+b6) ...
-#7 2.310 Selecting previously unselected package libsasl2-modules-db:amd64.
-#7 2.312 Preparing to unpack .../01-libsasl2-modules-db_2.1.28+dfsg-10_amd64.deb ...
-#7 2.324 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
-#7 2.410 Selecting previously unselected package libsasl2-2:amd64.
-#7 2.412 Preparing to unpack .../02-libsasl2-2_2.1.28+dfsg-10_amd64.deb ...
-#7 2.425 Unpacking libsasl2-2:amd64 (2.1.28+dfsg-10) ...
-#7 2.524 Selecting previously unselected package libldap-2.5-0:amd64.
-#7 2.526 Preparing to unpack .../03-libldap-2.5-0_2.5.13+dfsg-5_amd64.deb ...
-#7 2.538 Unpacking libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
-#7 2.662 Selecting previously unselected package libnghttp2-14:amd64.
-#7 2.665 Preparing to unpack .../04-libnghttp2-14_1.52.0-1+deb12u2_amd64.deb ...
-#7 2.677 Unpacking libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
-#7 2.782 Selecting previously unselected package libpsl5:amd64.
-#7 2.784 Preparing to unpack .../05-libpsl5_0.21.2-1_amd64.deb ...
-#7 2.796 Unpacking libpsl5:amd64 (0.21.2-1) ...
-#7 2.893 Selecting previously unselected package librtmp1:amd64.
-#7 2.895 Preparing to unpack .../06-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
-#7 2.907 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
-#7 3.015 Selecting previously unselected package libssh2-1:amd64.
-#7 3.017 Preparing to unpack .../07-libssh2-1_1.10.0-3+b1_amd64.deb ...
-#7 3.029 Unpacking libssh2-1:amd64 (1.10.0-3+b1) ...
-#7 3.135 Selecting previously unselected package libcurl4:amd64.
-#7 3.137 Preparing to unpack .../08-libcurl4_7.88.1-10+deb12u8_amd64.deb ...
-#7 3.150 Unpacking libcurl4:amd64 (7.88.1-10+deb12u8) ...
-#7 3.255 Selecting previously unselected package curl.
-#7 3.257 Preparing to unpack .../09-curl_7.88.1-10+deb12u8_amd64.deb ...
-#7 3.270 Unpacking curl (7.88.1-10+deb12u8) ...
-#7 3.383 Selecting previously unselected package libldap-common.
-#7 3.385 Preparing to unpack .../10-libldap-common_2.5.13+dfsg-5_all.deb ...
-#7 3.397 Unpacking libldap-common (2.5.13+dfsg-5) ...
-#7 3.505 Selecting previously unselected package libsasl2-modules:amd64.
-#7 3.507 Preparing to unpack .../11-libsasl2-modules_2.1.28+dfsg-10_amd64.deb ...
-#7 3.528 Unpacking libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
-#7 3.615 Selecting previously unselected package publicsuffix.
-#7 3.616 Preparing to unpack .../12-publicsuffix_20230209.2326-1_all.deb ...
-#7 3.628 Unpacking publicsuffix (20230209.2326-1) ...
-#7 3.730 Setting up libpsl5:amd64 (0.21.2-1) ...
-#7 3.766 Setting up libbrotli1:amd64 (1.0.9-2+b6) ...
-#7 3.801 Setting up libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
-#7 3.842 Setting up libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
-#7 3.876 Setting up libldap-common (2.5.13+dfsg-5) ...
-#7 3.926 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
-#7 3.964 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
-#7 4.001 Setting up libsasl2-2:amd64 (2.1.28+dfsg-10) ...
-#7 4.037 Setting up libssh2-1:amd64 (1.10.0-3+b1) ...
-#7 4.072 Setting up publicsuffix (20230209.2326-1) ...
-#7 4.106 Setting up libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
-#7 4.141 Setting up libcurl4:amd64 (7.88.1-10+deb12u8) ...
-#7 4.178 Setting up curl (7.88.1-10+deb12u8) ...
-#7 4.215 Processing triggers for libc-bin (2.36-9+deb12u9) ...
-#7 DONE 4.3s
+#7 0.475 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#7 0.537 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#7 0.558 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+#7 0.621 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8789 kB]
+#7 1.258 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [8856 B]
+#7 1.258 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [217 kB]
+#7 1.799 Fetched 9269 kB in 1s (6632 kB/s)
+#7 1.799 Reading package lists...
+#7 2.084 Reading package lists...
+#7 2.364 Building dependency tree...
+#7 2.419 Reading state information...
+#7 2.485 The following additional packages will be installed:
+#7 2.485   libbrotli1 libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5
+#7 2.485   librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1
+#7 2.485   publicsuffix
+#7 2.486 Suggested packages:
+#7 2.486   libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal
+#7 2.486   libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+#7 2.544 The following NEW packages will be installed:
+#7 2.544   curl libbrotli1 libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5
+#7 2.544   librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1
+#7 2.544   publicsuffix
+#7 2.624 0 upgraded, 13 newly installed, 0 to remove and 0 not upgraded.
+#7 2.624 Need to get 1837 kB of archives.
+#7 2.624 After this operation, 4548 kB of additional disk space will be used.
+#7 2.624 Get:1 http://deb.debian.org/debian bookworm/main amd64 libbrotli1 amd64 1.0.9-2+b6 [275 kB]
+#7 2.763 Get:2 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg-10 [20.3 kB]
+#7 2.784 Get:3 http://deb.debian.org/debian bookworm/main amd64 libsasl2-2 amd64 2.1.28+dfsg-10 [59.7 kB]
+#7 2.784 Get:4 http://deb.debian.org/debian bookworm/main amd64 libldap-2.5-0 amd64 2.5.13+dfsg-5 [183 kB]
+#7 2.828 Get:5 http://deb.debian.org/debian bookworm/main amd64 libnghttp2-14 amd64 1.52.0-1+deb12u2 [73.0 kB]
+#7 2.836 Get:6 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
+#7 2.858 Get:7 http://deb.debian.org/debian bookworm/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b2 [60.8 kB]
+#7 2.873 Get:8 http://deb.debian.org/debian bookworm/main amd64 libssh2-1 amd64 1.10.0-3+b1 [179 kB]
+#7 2.924 Get:9 http://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u8 [390 kB]
+#7 3.099 Get:10 http://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u8 [315 kB]
+#7 3.227 Get:11 http://deb.debian.org/debian bookworm/main amd64 libldap-common all 2.5.13+dfsg-5 [29.3 kB]
+#7 3.256 Get:12 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules amd64 2.1.28+dfsg-10 [66.6 kB]
+#7 3.292 Get:13 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
+#7 3.427 debconf: delaying package configuration, since apt-utils is not installed
+#7 3.455 Fetched 1837 kB in 1s (2344 kB/s)
+#7 3.514 Selecting previously unselected package libbrotli1:amd64.
+#7 3.514 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6686 files and directories currently installed.)
+#7 3.522 Preparing to unpack .../00-libbrotli1_1.0.9-2+b6_amd64.deb ...
+#7 3.546 Unpacking libbrotli1:amd64 (1.0.9-2+b6) ...
+#7 3.639 Selecting previously unselected package libsasl2-modules-db:amd64.
+#7 3.641 Preparing to unpack .../01-libsasl2-modules-db_2.1.28+dfsg-10_amd64.deb ...
+#7 3.653 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+#7 3.739 Selecting previously unselected package libsasl2-2:amd64.
+#7 3.741 Preparing to unpack .../02-libsasl2-2_2.1.28+dfsg-10_amd64.deb ...
+#7 3.753 Unpacking libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+#7 3.853 Selecting previously unselected package libldap-2.5-0:amd64.
+#7 3.855 Preparing to unpack .../03-libldap-2.5-0_2.5.13+dfsg-5_amd64.deb ...
+#7 3.866 Unpacking libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+#7 3.967 Selecting previously unselected package libnghttp2-14:amd64.
+#7 3.969 Preparing to unpack .../04-libnghttp2-14_1.52.0-1+deb12u2_amd64.deb ...
+#7 3.988 Unpacking libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+#7 4.082 Selecting previously unselected package libpsl5:amd64.
+#7 4.084 Preparing to unpack .../05-libpsl5_0.21.2-1_amd64.deb ...
+#7 4.096 Unpacking libpsl5:amd64 (0.21.2-1) ...
+#7 4.205 Selecting previously unselected package librtmp1:amd64.
+#7 4.208 Preparing to unpack .../06-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
+#7 4.220 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+#7 4.320 Selecting previously unselected package libssh2-1:amd64.
+#7 4.322 Preparing to unpack .../07-libssh2-1_1.10.0-3+b1_amd64.deb ...
+#7 4.334 Unpacking libssh2-1:amd64 (1.10.0-3+b1) ...
+#7 4.448 Selecting previously unselected package libcurl4:amd64.
+#7 4.450 Preparing to unpack .../08-libcurl4_7.88.1-10+deb12u8_amd64.deb ...
+#7 4.462 Unpacking libcurl4:amd64 (7.88.1-10+deb12u8) ...
+#7 4.585 Selecting previously unselected package curl.
+#7 4.587 Preparing to unpack .../09-curl_7.88.1-10+deb12u8_amd64.deb ...
+#7 4.599 Unpacking curl (7.88.1-10+deb12u8) ...
+#7 4.703 Selecting previously unselected package libldap-common.
+#7 4.705 Preparing to unpack .../10-libldap-common_2.5.13+dfsg-5_all.deb ...
+#7 4.717 Unpacking libldap-common (2.5.13+dfsg-5) ...
+#7 4.823 Selecting previously unselected package libsasl2-modules:amd64.
+#7 4.824 Preparing to unpack .../11-libsasl2-modules_2.1.28+dfsg-10_amd64.deb ...
+#7 4.849 Unpacking libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+#7 4.937 Selecting previously unselected package publicsuffix.
+#7 4.939 Preparing to unpack .../12-publicsuffix_20230209.2326-1_all.deb ...
+#7 4.951 Unpacking publicsuffix (20230209.2326-1) ...
+#7 5.062 Setting up libpsl5:amd64 (0.21.2-1) ...
+#7 5.101 Setting up libbrotli1:amd64 (1.0.9-2+b6) ...
+#7 5.138 Setting up libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+#7 5.182 Setting up libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+#7 5.218 Setting up libldap-common (2.5.13+dfsg-5) ...
+#7 5.265 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+#7 5.300 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+#7 5.335 Setting up libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+#7 5.371 Setting up libssh2-1:amd64 (1.10.0-3+b1) ...
+#7 5.406 Setting up publicsuffix (20230209.2326-1) ...
+#7 5.442 Setting up libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+#7 5.478 Setting up libcurl4:amd64 (7.88.1-10+deb12u8) ...
+#7 5.514 Setting up curl (7.88.1-10+deb12u8) ...
+#7 5.552 Processing triggers for libc-bin (2.36-9+deb12u9) ...
+#7 DONE 5.7s
 
 #8 [3/5] WORKDIR /home/ssafarveisi
 #8 DONE 0.1s
@@ -125,128 +128,128 @@
 #9 DONE 0.1s
 
 #10 [5/5] RUN curl -sSL https://install.python-poetry.org | python3 - && poetry install --no-root
-#10 11.65 Retrieving Poetry metadata
-#10 11.65 
-#10 11.65 # Welcome to Poetry!
-#10 11.65 
-#10 11.65 This will download and install the latest version of Poetry,
-#10 11.65 a dependency and package manager for Python.
-#10 11.65 
-#10 11.65 It will add the `poetry` command to Poetry's bin directory, located at:
-#10 11.65 
-#10 11.65 /home/ssafarveisi/.local/bin
-#10 11.65 
-#10 11.65 You can uninstall at any time by executing this script with the --uninstall option,
-#10 11.65 and these changes will be reverted.
-#10 11.65 
-#10 11.65 Installing Poetry (1.8.5)
-#10 11.65 Installing Poetry (1.8.5): Creating environment
-#10 11.65 Installing Poetry (1.8.5): Installing Poetry
-#10 11.65 Installing Poetry (1.8.5): Creating script
-#10 11.65 Installing Poetry (1.8.5): Done
-#10 11.65 
-#10 11.65 Poetry (1.8.5) is installed now. Great!
-#10 11.65 
-#10 11.65 You can test that everything is set up by executing:
-#10 11.65 
-#10 11.65 `poetry --version`
-#10 11.65 
-#10 12.21 Creating virtualenv non-package-mode-ErsSHXEO-py3.9 in /home/ssafarveisi/.cache/pypoetry/virtualenvs
-#10 12.74 Installing dependencies from lock file
-#10 12.91 
-#10 12.91 Package operations: 86 installs, 0 updates, 0 removals
-#10 12.91 
-#10 12.91   - Installing attrs (24.3.0)
-#10 12.91   - Installing rpds-py (0.22.3)
-#10 13.18   - Installing referencing (0.35.1)
-#10 13.20   - Installing asttokens (3.0.0)
-#10 13.20   - Installing executing (2.1.0)
-#10 13.20   - Installing jsonschema-specifications (2024.10.1)
-#10 13.20   - Installing markupsafe (3.0.2)
-#10 13.20   - Installing mdurl (0.1.2)
-#10 13.20   - Installing parso (0.8.4)
-#10 13.21   - Installing platformdirs (4.3.6)
-#10 13.21   - Installing ptyprocess (0.7.0)
-#10 13.21   - Installing pure-eval (0.2.3)
-#10 13.21   - Installing six (1.17.0)
-#10 13.21   - Installing smmap (5.0.1)
-#10 13.21   - Installing traitlets (5.14.3)
-#10 13.22   - Installing wcwidth (0.2.13)
-#10 13.22   - Installing zipp (3.21.0)
-#10 13.48   - Installing certifi (2024.12.14)
-#10 13.48   - Installing charset-normalizer (3.4.0)
-#10 13.48   - Installing exceptiongroup (1.2.2)
-#10 13.49   - Installing gitdb (4.0.11)
-#10 13.49   - Installing importlib-metadata (8.5.0)
-#10 13.49   - Installing jedi (0.19.2)
-#10 13.49   - Installing decorator (5.1.1)
-#10 13.49   - Installing idna (3.10)
-#10 13.49   - Installing jinja2 (3.1.4)
-#10 13.50   - Installing jsonschema (4.23.0)
-#10 13.50   - Installing jupyter-core (5.7.2)
-#10 13.50   - Installing matplotlib-inline (0.1.7)
-#10 13.51   - Installing narwhals (1.18.4)
-#10 13.51   - Installing packaging (24.2)
-#10 13.51   - Installing numpy (2.0.2)
-#10 13.52   - Installing markdown-it-py (3.0.0)
-#10 13.53   - Installing prompt-toolkit (3.0.48)
-#10 13.53   - Installing pygments (2.18.0)
-#10 13.53   - Installing pexpect (4.9.0)
-#10 13.53   - Installing python-dateutil (2.9.0.post0)
-#10 13.54   - Installing stack-data (0.6.3)
-#10 13.54   - Installing pyzmq (26.2.0)
-#10 13.54   - Installing tornado (6.4.2)
-#10 13.55   - Installing pytz (2024.2)
-#10 13.82   - Installing typing-extensions (4.12.2)
-#10 13.85   - Installing tzdata (2024.2)
-#10 13.88   - Installing urllib3 (2.2.3)
-#10 15.16   - Installing altair (5.5.0)
-#10 15.16   - Installing blinker (1.9.0)
-#10 15.17   - Installing cachetools (5.5.0)
-#10 15.17   - Installing click (8.1.7)
-#10 15.17   - Installing comm (0.2.2)
-#10 15.17   - Installing contourpy (1.3.0)
-#10 15.17   - Installing cycler (0.12.1)
-#10 15.17   - Installing debugpy (1.8.11)
-#10 15.17   - Installing fonttools (4.55.3)
-#10 15.17   - Installing gitpython (3.1.43)
-#10 15.17   - Installing ipython (8.18.1)
-#10 15.17   - Installing joblib (1.4.2)
-#10 15.17   - Installing importlib-resources (6.4.5)
-#10 15.17   - Installing jupyterlab-widgets (3.0.13)
-#10 15.17   - Installing jupyter-client (8.6.3)
-#10 15.17   - Installing nest-asyncio (1.6.0)
-#10 15.17   - Installing kiwisolver (1.4.7)
-#10 15.18   - Installing mypy-extensions (1.0.0)
-#10 15.18   - Installing pillow (11.0.0)
-#10 15.18   - Installing protobuf (5.29.1)
-#10 15.18   - Installing pyarrow (18.1.0)
-#10 15.18   - Installing pathspec (0.12.1)
-#10 15.18   - Installing psutil (6.1.0)
-#10 15.18   - Installing pandas (2.2.3)
-#10 15.49   - Installing pydeck (0.9.1)
-#10 15.50   - Installing pyparsing (3.2.0)
-#10 15.50   - Installing requests (2.32.3)
-#10 15.51   - Installing rich (13.9.4)
-#10 15.51   - Installing scipy (1.13.1)
-#10 15.52   - Installing tenacity (9.0.0)
-#10 15.69   - Installing threadpoolctl (3.5.0)
-#10 15.89   - Installing tokenize-rt (6.1.0)
-#10 15.94   - Installing toml (0.10.2)
-#10 15.96   - Installing tomli (2.2.1)
-#10 16.02   - Installing watchdog (6.0.0)
-#10 16.06   - Installing widgetsnbextension (4.0.13)
-#10 19.06   - Installing black (24.10.0)
-#10 19.06   - Installing ipykernel (6.29.5)
-#10 19.06   - Installing ipywidgets (8.1.5)
-#10 19.06   - Installing matplotlib (3.9.4)
-#10 19.06   - Installing scikit-learn (1.6.0)
-#10 19.06   - Installing streamlit (1.41.1)
-#10 DONE 20.2s
+#10 17.84 Retrieving Poetry metadata
+#10 17.84 
+#10 17.84 # Welcome to Poetry!
+#10 17.84 
+#10 17.84 This will download and install the latest version of Poetry,
+#10 17.84 a dependency and package manager for Python.
+#10 17.84 
+#10 17.84 It will add the `poetry` command to Poetry's bin directory, located at:
+#10 17.84 
+#10 17.84 /home/ssafarveisi/.local/bin
+#10 17.84 
+#10 17.84 You can uninstall at any time by executing this script with the --uninstall option,
+#10 17.84 and these changes will be reverted.
+#10 17.84 
+#10 17.84 Installing Poetry (1.8.5)
+#10 17.84 Installing Poetry (1.8.5): Creating environment
+#10 17.84 Installing Poetry (1.8.5): Installing Poetry
+#10 17.84 Installing Poetry (1.8.5): Creating script
+#10 17.84 Installing Poetry (1.8.5): Done
+#10 17.84 
+#10 17.84 Poetry (1.8.5) is installed now. Great!
+#10 17.84 
+#10 17.84 You can test that everything is set up by executing:
+#10 17.84 
+#10 17.84 `poetry --version`
+#10 17.84 
+#10 18.40 Creating virtualenv non-package-mode-ErsSHXEO-py3.9 in /home/ssafarveisi/.cache/pypoetry/virtualenvs
+#10 18.95 Installing dependencies from lock file
+#10 19.11 
+#10 19.11 Package operations: 86 installs, 0 updates, 0 removals
+#10 19.11 
+#10 19.11   - Installing attrs (24.3.0)
+#10 19.11   - Installing rpds-py (0.22.3)
+#10 19.90   - Installing referencing (0.35.1)
+#10 20.01   - Installing asttokens (3.0.0)
+#10 20.01   - Installing executing (2.1.0)
+#10 20.01   - Installing jsonschema-specifications (2024.10.1)
+#10 20.01   - Installing markupsafe (3.0.2)
+#10 20.02   - Installing mdurl (0.1.2)
+#10 20.02   - Installing parso (0.8.4)
+#10 20.02   - Installing platformdirs (4.3.6)
+#10 20.02   - Installing ptyprocess (0.7.0)
+#10 20.03   - Installing pure-eval (0.2.3)
+#10 20.03   - Installing six (1.17.0)
+#10 20.03   - Installing smmap (5.0.1)
+#10 20.03   - Installing traitlets (5.14.3)
+#10 20.04   - Installing wcwidth (0.2.13)
+#10 20.04   - Installing zipp (3.21.0)
+#10 20.57   - Installing certifi (2024.12.14)
+#10 20.57   - Installing charset-normalizer (3.4.0)
+#10 20.57   - Installing exceptiongroup (1.2.2)
+#10 20.57   - Installing decorator (5.1.1)
+#10 20.57   - Installing gitdb (4.0.11)
+#10 20.58   - Installing idna (3.10)
+#10 20.58   - Installing importlib-metadata (8.5.0)
+#10 20.58   - Installing jsonschema (4.23.0)
+#10 20.58   - Installing jupyter-core (5.7.2)
+#10 20.58   - Installing matplotlib-inline (0.1.7)
+#10 20.59   - Installing jedi (0.19.2)
+#10 20.59   - Installing markdown-it-py (3.0.0)
+#10 20.59   - Installing numpy (2.0.2)
+#10 20.59   - Installing pexpect (4.9.0)
+#10 20.60   - Installing pygments (2.18.0)
+#10 20.60   - Installing python-dateutil (2.9.0.post0)
+#10 20.60   - Installing jinja2 (3.1.4)
+#10 20.60   - Installing packaging (24.2)
+#10 20.60   - Installing tornado (6.4.2)
+#10 20.60   - Installing narwhals (1.18.4)
+#10 20.61   - Installing pytz (2024.2)
+#10 20.61   - Installing prompt-toolkit (3.0.48)
+#10 20.62   - Installing stack-data (0.6.3)
+#10 20.62   - Installing pyzmq (26.2.0)
+#10 20.68   - Installing typing-extensions (4.12.2)
+#10 20.69   - Installing tzdata (2024.2)
+#10 20.72   - Installing urllib3 (2.2.3)
+#10 30.93   - Installing altair (5.5.0)
+#10 30.93   - Installing blinker (1.9.0)
+#10 30.93   - Installing cachetools (5.5.0)
+#10 30.93   - Installing click (8.1.7)
+#10 30.93   - Installing comm (0.2.2)
+#10 30.93   - Installing contourpy (1.3.0)
+#10 30.93   - Installing cycler (0.12.1)
+#10 30.93   - Installing debugpy (1.8.11)
+#10 30.93   - Installing fonttools (4.55.3)
+#10 30.94   - Installing gitpython (3.1.43)
+#10 30.94   - Installing importlib-resources (6.4.5)
+#10 30.94   - Installing ipython (8.18.1)
+#10 30.94   - Installing joblib (1.4.2)
+#10 30.94   - Installing jupyter-client (8.6.3)
+#10 30.94   - Installing jupyterlab-widgets (3.0.13)
+#10 30.94   - Installing kiwisolver (1.4.7)
+#10 30.94   - Installing mypy-extensions (1.0.0)
+#10 30.94   - Installing nest-asyncio (1.6.0)
+#10 30.94   - Installing pandas (2.2.3)
+#10 30.94   - Installing pathspec (0.12.1)
+#10 30.94   - Installing pillow (11.0.0)
+#10 30.94   - Installing protobuf (5.29.1)
+#10 30.94   - Installing psutil (6.1.0)
+#10 30.94   - Installing pyarrow (18.1.0)
+#10 31.01   - Installing pydeck (0.9.1)
+#10 31.03   - Installing pyparsing (3.2.0)
+#10 31.04   - Installing requests (2.32.3)
+#10 31.04   - Installing rich (13.9.4)
+#10 31.07   - Installing scipy (1.13.1)
+#10 31.26   - Installing tenacity (9.0.0)
+#10 31.45   - Installing threadpoolctl (3.5.0)
+#10 31.64   - Installing tokenize-rt (6.1.0)
+#10 31.65   - Installing toml (0.10.2)
+#10 31.70   - Installing tomli (2.2.1)
+#10 32.23   - Installing watchdog (6.0.0)
+#10 32.67   - Installing widgetsnbextension (4.0.13)
+#10 81.57   - Installing black (24.10.0)
+#10 81.58   - Installing ipykernel (6.29.5)
+#10 81.58   - Installing ipywidgets (8.1.5)
+#10 81.58   - Installing scikit-learn (1.6.0)
+#10 81.58   - Installing streamlit (1.41.1)
+#10 81.58   - Installing matplotlib (3.9.4)
+#10 DONE 86.2s
 
 #11 exporting to image
 #11 exporting layers
-#11 exporting layers 3.2s done
-#11 writing image sha256:6c2a5a6c0413d0fc786fe1588787f3af2a72dce34b971f5dffd419eda79f0c94 done
+#11 exporting layers 3.8s done
+#11 writing image sha256:3cee57328b467a73c9439512885b11fda761e1b9d7dcb8494dfe65efde2f4e8e done
 #11 naming to docker.io/ciaa/novelty:0.1.0 0.0s done
-#11 DONE 3.2s
+#11 DONE 3.9s

@@ -1,7 +1,7 @@
 from typing import Tuple, Optional
 from etl import get_station_measurements
 from stations import get_stations_uuid
-from plot import plot_detection
+from plot import plot_detection, plot_reference_data
 from sklearn.neighbors import LocalOutlierFactor
 import pandas as pd
 import streamlit as st
@@ -45,20 +45,21 @@ st.title("Novelty Detection for Water Level")
 
 col1, col2 = st.columns(2)
 
-with col1:
-    # select_uuid
-    uuid = st.selectbox("Station UUID", get_stations_uuid())
 
-with col2:
-    # Retrieve data for the selected station
-    df_ref, df_pred = get_station_data(uuid=uuid)
-    if df_pred is None:
-        st.write(
-            "There are no new measurements for the requested station. "
-            "Please try agian later!"
-        )
-    else:
-        st.write("Fetching new measurements successful!")
-        df_pred = detection(df_ref=df_ref, df_pred=df_pred)
-        fig = plot_detection(df=df_pred)
-        st.pyplot(fig, use_container_width=True)
+# Select station uuid
+uuid = st.selectbox("Station UUID", get_stations_uuid())
+
+# Retrieve data for the selected station (reference + prediction)
+df_ref, df_pred = get_station_data(uuid=uuid)
+if df_pred is None or df_ref is None:
+    st.write(
+        "There are no new measurements for the requested station. "
+        "Please try agian later!"
+    )
+else:
+    st.write("Fetching new measurements successful!")
+    df_pred = detection(df_ref=df_ref, df_pred=df_pred)
+    fig_pred = plot_detection(df=df_pred)
+    st.pyplot(fig_pred, use_container_width=True)
+    fig_ref = plot_reference_data(df=df_ref)
+    st.pyplot(fig_ref, use_container_width=True)
