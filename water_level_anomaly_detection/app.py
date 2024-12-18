@@ -1,3 +1,5 @@
+import json
+import logging
 from typing import Tuple, Optional
 from etl import get_station_measurements
 from stations import get_stations_uuid
@@ -6,10 +8,37 @@ from sklearn.neighbors import LocalOutlierFactor
 import pandas as pd
 import streamlit as st
 
+# Custom JSON formatter
+class JSONFormatter(logging.Formatter):
+    def format(self, record):
+        log_record = {
+            'level': record.levelname,
+            'message': record.getMessage(),
+            'time': self.formatTime(record, self.datefmt),
+            'name': record.name,
+        }
+        return json.dumps(log_record)
+
+logger = logging.getLogger("WaterLevelAnomalyDetection")
+logger.setLevel(logging.INFO)
+
+# Create console handler (ch) and set level to info
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+
+# Create formatter
+formatter = JSONFormatter()
+
+# Add formatter to ch
+ch.setFormatter(formatter)
+
+# Add ch to logger
+logger.addHandler(ch)
+
 
 @st.cache_data(ttl="20m")
 def detection(df_ref: pd.DataFrame, df_pred: pd.DataFrame) -> pd.DataFrame:
-    print("Running detection ...")
+    logger.info("Running detection ...")
 
     assert "value" in df_ref, "Could not find 'value' among columns."
     assert "value" in df_pred, "Could not find 'value' among columns."
@@ -30,7 +59,7 @@ def detection(df_ref: pd.DataFrame, df_pred: pd.DataFrame) -> pd.DataFrame:
 def get_station_data(
     uuid: str,
 ) -> Tuple[Optional[pd.DataFrame], Optional[pd.DataFrame]]:
-    print(f"Getting latest station data with id: {uuid} ...")
+    logger.info(f"Getting latest station data with id: {uuid} ...")
 
     # Retrieve data for the selected station
     df_ref, df_pred = get_station_measurements(
@@ -45,7 +74,6 @@ st.title("Novelty Detection for Water Level")
 
 col1, col2 = st.columns(2)
 
-
 # Select station uuid
 uuid = st.selectbox("Station UUID", get_stations_uuid())
 
@@ -57,8 +85,11 @@ if df_pred is None or df_ref is None:
         "There are no new measurements for the requested station. "
         "Please try agian later!"
     )
+    logger.error("Reference data is not available or new measurements are not there yet.")
 else:
-    st.write("Fetching new measurements successful!")
+    msg = "Fetching new measurements successful."
+    st.write(msg)
+    logger.info(msg)
     df_pred = detection(df_ref=df_ref, df_pred=df_pred)
     fig_pred = plot_detection(df=df_pred)
     st.pyplot(fig_pred, use_container_width=True)
