@@ -13,7 +13,7 @@ To use the application, run the Docker container in detached mode. The app is de
 ./run-docker-app.sh <tag of the docker image>
 ```
 
-## Monotirng the app logs
+## Monotoring the app logs
 
 We use `Filebeat --> Elasticsearch --> Kibana` stack to monitor the logs of the docker container spawned above (logs are located at `/var/lib/docker/containers` of the host machine). All three services will run in their own docker containers. First, change the working directory to `/elastic-start-local` and run the following command to start a single-node Elastic cluster: 
 
