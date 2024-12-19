@@ -1,0 +1,23 @@
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+setup.dashboards.enabled: true
+
+filebeat.inputs:
+- type: container
+  paths: 
+    - /var/lib/docker/containers/*/*.log
+      
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+
+setup.kibana.host: "http://kibana:5601"
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "naBrcv8P"

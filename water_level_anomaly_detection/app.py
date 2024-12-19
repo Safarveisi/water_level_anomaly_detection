@@ -1,4 +1,5 @@
 import json
+import sys
 import logging
 from typing import Tuple, Optional
 from etl import get_station_measurements
@@ -8,29 +9,12 @@ from sklearn.neighbors import LocalOutlierFactor
 import pandas as pd
 import streamlit as st
 
-# Custom JSON formatter
-class JSONFormatter(logging.Formatter):
-    def format(self, record):
-        log_record = {
-            'level': record.levelname,
-            'message': record.getMessage(),
-            'time': self.formatTime(record, self.datefmt),
-            'name': record.name,
-        }
-        return json.dumps(log_record)
-
 logger = logging.getLogger("WaterLevelAnomalyDetection")
 logger.setLevel(logging.INFO)
 
 # Create console handler (ch) and set level to info
-ch = logging.StreamHandler()
+ch = logging.StreamHandler(sys.stdout)
 ch.setLevel(logging.INFO)
-
-# Create formatter
-formatter = JSONFormatter()
-
-# Add formatter to ch
-ch.setFormatter(formatter)
 
 # Add ch to logger
 logger.addHandler(ch)
