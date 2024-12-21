@@ -20,6 +20,7 @@ We use `Filebeat --> Elasticsearch --> Kibana` stack to monitor the logs of the 
 ```bash
 ./start.sh
 ```
+Now, you can navigate to (localhost:5601) to see the Kibana dashboard. 
 
 To stop the cluster:
 
@@ -32,6 +33,13 @@ To remove volumes and containers (Filebeat, Elasticsearch, and Kibana):
 ```bash
 ./uninstall.sh
 ```
+
+### 🌐 Endpoints
+
+After running `start.sh`:
+- Elasticsearch will be running at http://localhost:9200
+- Kibana will be running at http://localhost:5601
+
 
 ## About the API
 
