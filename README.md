@@ -34,7 +34,7 @@ We use `Filebeat --> Elasticsearch --> Kibana` stack to monitor the logs of the 
 ./start.sh
 ```
 > [!NOTE]
-> On linux machine, make sure the value of `vm.max_map_count` in `/etc/sysctl.conf` is at least `262144`. for Mac and windows users
+> On linux machine, make sure the value of `vm.max_map_count` in `/etc/sysctl.conf` is at least `262144`. For Mac and windows users
 > please see section [Using the Docker images in production](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-prod-prerequisites)  
 
 🛑 To stop the cluster:
