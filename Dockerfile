@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-ENV user=ssafarveisi
+ENV user=developer
 
 RUN useradd -m -d /home/${user} ${user} && \
     chown -R ${user} /home/${user} && \
