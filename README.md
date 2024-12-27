@@ -62,7 +62,7 @@ After running `start.sh`:
 |:-------------------------------:|:---------------------------------:|
 | `water_level_anomaly_detection` | Contains all source code for the application. |
 | `.python-version` | Specifies the Python version used in app development. |
-| `build-image.sh` | Script to build the Docker image; logs are directed to `build.log`. |
+| `build-image.sh` | Script to build the Docker image; logs are directed to `build_image.log`. |
 | `Dockerfile` | Provides instructions to build the Docker image. |
 | `run-docker-app.sh` | Script to launch the Docker container and instantiate the app. |
 | `setup-env.sh` | Script to set up the virtual environment and install development dependencies in the dev mode. | 
