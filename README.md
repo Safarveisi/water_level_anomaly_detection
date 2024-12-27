@@ -16,8 +16,6 @@ The app is deployed as a [Streamlit](https://streamlit.io/) dashboard and is acc
 ## 🏃‍♀️‍➡️ Getting started
 
 ```bash
-# Make sure the docker image is available
-./build-image.sh <tag of the docker image>
 # Run a container in detached mode
 ./run-docker-app.sh <tag of the docker image>
 ```
