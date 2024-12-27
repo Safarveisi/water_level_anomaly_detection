@@ -14,7 +14,7 @@ ask_confirmation() {
             ;;
         *)
             echo "Please answer yes or no."
-            ask_confirmation  # Ask again if the input is invalid
+            ask_confirmation
             ;;
     esac
 }
