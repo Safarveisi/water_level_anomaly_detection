@@ -6,6 +6,7 @@ import pandas as pd
 
 plt.style.use("fivethirtyeight")
 
+
 def plot_detection(df: pd.DataFrame) -> plt.Figure:
 
     fig, ax = plt.subplots(figsize=(11, 7))
@@ -46,10 +47,11 @@ def plot_detection(df: pd.DataFrame) -> plt.Figure:
 
     return fig
 
+
 def plot_reference_data(df: pd.DataFrame) -> plt.Figure:
-    
+
     fig, ax = plt.subplots(figsize=(12, 7))
-    
+
     date_str = df["timestamp"].dt.date.iloc[0].strftime("%Y-%m-%d")
 
     ax.plot(
@@ -58,7 +60,7 @@ def plot_reference_data(df: pd.DataFrame) -> plt.Figure:
         "o-",
         label=f"Reference",
         color="#adad3b",
-        linewidth=3
+        linewidth=3,
     )
 
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))
@@ -73,5 +75,3 @@ def plot_reference_data(df: pd.DataFrame) -> plt.Figure:
     plt.tight_layout(pad=2)
 
     return fig
-
-
