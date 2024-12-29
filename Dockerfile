@@ -14,7 +14,7 @@ ENV PATH=/home/${user}/.local/bin:$PATH
 
 COPY pyproject.toml poetry.lock water_level_anomaly_detection/ ./
 
-# Install poetry
+# Install poetry (package mode: false)
 RUN curl -sSL https://install.python-poetry.org | python3 - && poetry install --no-root
 
 EXPOSE 8501
