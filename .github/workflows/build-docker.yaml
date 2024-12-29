@@ -16,5 +16,5 @@ jobs:
         run: docker build . --file Dockerfile --tag ciaa/novelty:$(date +%y.%m.%d)
       - name: Push the docker image to docker hub
         run: |
-          docker login -u ciaa -p ${{ secret.DOCKER_HUB_TOKEN }}
+          docker login -u ciaa -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push ciaa/novelty:$(date +%y.%m.%d)
