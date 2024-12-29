@@ -22,10 +22,7 @@ logger.addHandler(ch)
 
 @st.cache_data(ttl="20m")
 def detection(df_ref: pd.DataFrame, df_pred: pd.DataFrame) -> pd.DataFrame:
-    logger.info("Running detection ...")
-
-    assert "value" in df_ref, "Could not find 'value' among columns (reference df)."
-    assert "value" in df_pred, "Could not find 'value' among columns (prediction df)."
+    logger.info("Running novelty detection ...")
 
     # Initialize the novelty detection ML algorithm
     clf = LocalOutlierFactor(n_neighbors=2, novelty=True)
@@ -63,19 +60,29 @@ uuid = st.selectbox("Station UUID", get_stations_uuid())
 df_ref, df_pred = get_station_data(uuid=uuid)
 
 if df_pred is None or df_ref is None:
-    st.write(
-        """
-        There are no new measurements for the requested station.
-        Please try agian later! :sleeping:
-        """
-    )
-    logger.error("Reference data is not available or new measurements are not there yet.")
+    msg = """
+    There are no measurements for the requested station.
+    Please try agian later! :sleeping:
+    """
+    st.write(msg)
+    logger.error(msg)
+
 else:
-    msg = "Fetching new measurements successful."
+    msg = "Fetching new measurements successful!"
     st.write(msg)
     logger.info(msg)
-    df_pred = detection(df_ref=df_ref, df_pred=df_pred)
-    fig_pred = plot_detection(df=df_pred)
-    st.pyplot(fig_pred, use_container_width=True)
-    fig_ref = plot_reference_data(df=df_ref)
-    st.pyplot(fig_ref, use_container_width=True)
+
+    if df_pred.empty or df_ref.empty:
+        msg = """
+        Either reference or prediction data frames
+        are empty! Please try again later! :sleeping:
+        """
+        st.write(msg)
+        logger.info(msg)
+    else:
+        st.write("Running novelty detection and plotting :fire:")
+        df_pred = detection(df_ref=df_ref, df_pred=df_pred)
+        fig_pred = plot_detection(df=df_pred)
+        st.pyplot(fig_pred, use_container_width=True)
+        fig_ref = plot_reference_data(df=df_ref)
+        st.pyplot(fig_ref, use_container_width=True)
