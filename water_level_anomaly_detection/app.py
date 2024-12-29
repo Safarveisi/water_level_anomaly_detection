@@ -24,8 +24,8 @@ logger.addHandler(ch)
 def detection(df_ref: pd.DataFrame, df_pred: pd.DataFrame) -> pd.DataFrame:
     logger.info("Running detection ...")
 
-    assert "value" in df_ref, "Could not find 'value' among columns."
-    assert "value" in df_pred, "Could not find 'value' among columns."
+    assert "value" in df_ref, "Could not find 'value' among columns (reference df)."
+    assert "value" in df_pred, "Could not find 'value' among columns (prediction df)."
 
     # Initialize the novelty detection ML algorithm
     clf = LocalOutlierFactor(n_neighbors=2, novelty=True)
@@ -64,8 +64,10 @@ df_ref, df_pred = get_station_data(uuid=uuid)
 
 if df_pred is None or df_ref is None:
     st.write(
-        "There are no new measurements for the requested station. "
-        "Please try agian later!"
+        """
+        There are no new measurements for the requested station.
+        Please try agian later! :sleeping:
+        """
     )
     logger.error("Reference data is not available or new measurements are not there yet.")
 else:

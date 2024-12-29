@@ -18,7 +18,8 @@ def extract_hours(window: str, pattern: str = PATTERN) -> int:
 def get_station_measurements(
     uuid: str, reference_window: str = "PT6H", prediction_window: str = "PT1H"
 ) -> Tuple[Optional[pd.DataFrame], Optional[pd.DataFrame]]:
-    """Get the water level measurements for the requested window and the selected uuid (station).
+    """Get the water level measurements for the requested
+    window and the selected uuid (station).
 
     Parameters
     ==========
