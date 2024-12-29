@@ -3,6 +3,7 @@ v=$1
 target_image=ciaa/novelty:$v
 # Get all local docker images
 images=$(docker images --format '{{.Repository}}:{{.Tag}}')
+
 # Check if the target image already exists
 if $(echo "$images" | grep -q "^${target_image}$"); then
   echo "Image $target_image exists. Creating the container ..."
