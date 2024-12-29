@@ -56,8 +56,6 @@ def get_station_data(
 st.set_page_config(layout="wide")
 st.title("Novelty Detection for Water Level")
 
-col1, col2 = st.columns(2)
-
 # Select station uuid
 uuid = st.selectbox("Station UUID", get_stations_uuid())
 
