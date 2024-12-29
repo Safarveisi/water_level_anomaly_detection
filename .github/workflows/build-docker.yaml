@@ -1,0 +1,20 @@
+name: Build and publish image to docker hub
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'water_level_anomaly_detection/*.py'
+      - './pyproject.toml'
+      - './poetry.lock'
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the docker image
+        run: docker build . --file Dockerfile --tag ciaa/novelty:$(date +%y.%m.%d)
+      - name: Push the docker image to docker hub
+        run: |
+          docker login -u ciaa -p ${{ secret.DOCKER_HUB_TOKEN }}
+          docker push ciaa/novelty:$(date +%y.%m.%d)
