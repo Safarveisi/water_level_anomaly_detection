@@ -65,3 +65,4 @@ After running `start.sh`:
 | `run-docker-app.sh` | Script to launch the Docker container and instantiate the app. |
 | `setup-env.sh` | Script to set up the virtual environment and install development dependencies in the dev mode. | 
 | `elastic-start-local` | Contains all scripts as well as configurations to setup a single-node Elastic cluster |
+| `.github/workflows` | YAML file for the Github actions (CI/CD) |
