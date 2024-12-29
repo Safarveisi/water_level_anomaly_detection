@@ -7,6 +7,7 @@ on:
       - 'water_level_anomaly_detection/*.py'
       - './pyproject.toml'
       - './poetry.lock'
+      - './Dockerfile'
 jobs:
   build: 
     runs-on: ubuntu-latest
