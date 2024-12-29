@@ -1,3 +1,5 @@
+# Use this script for testing purposes only (build image, but do not push to docker hub)
+
 # Version of the app (image tag)
 v=$1
 target_image=ciaa/novelty:$v
