@@ -3,6 +3,7 @@ import requests
 
 
 def get_stations_uuid() -> Optional[List[str]]:
+    """List of all available station ids"""
     try:
         res = requests.get(
             f"https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations.json"
