@@ -71,7 +71,7 @@ else:
     msg = "Fetching new measurements successful!"
     st.write(msg)
     logger.info(msg)
-
+    
     if df_pred.empty or df_ref.empty:
         msg = """
         Either reference or prediction data frames
