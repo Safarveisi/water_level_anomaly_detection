@@ -20,7 +20,19 @@ The app is deployed as a [Streamlit](https://streamlit.io/) dashboard and is acc
 ./run-docker-app.sh <tag of the docker image>
 ```
 
+You can also start the container via [Terraform](https://www.terraform.io/):
+
+```bash
+terraform apply
+```
+
 The streamlit dashboard should be now available at http://localhost:8502. 
+
+To destroy the docker container, run:
+
+```bash
+terraform destroy
+``` 
 
 ## Monotoring the app logs
 
@@ -53,7 +65,6 @@ After running `start.sh`:
 - Elasticsearch will be running at http://localhost:9200
 - Kibana will be running at http://localhost:5601
 
-
 ## Table of files and directories
 
 |           File/Directory        |             Description           |
@@ -66,3 +77,4 @@ After running `start.sh`:
 | `setup-env.sh` | Script to set up the virtual environment and install development dependencies in the dev mode. | 
 | `elastic-start-local` | Contains all scripts as well as configurations to setup a single-node Elastic cluster |
 | `.github/workflows` | YAML file for the Github actions (CI/CD) |
+| `main.tf` | Terraform (infrastructure as code tool) configuration file |
