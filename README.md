@@ -23,7 +23,8 @@ The app is deployed as a [Streamlit](https://streamlit.io/) dashboard and is acc
 You can also start the container via [Terraform](https://www.terraform.io/):
 
 ```bash
-terraform apply
+# If -var is not supplied, the default values are used (see variables.tf)
+terraform apply -var="docker_repo=novelty" -var="image_tag=24.12.30"
 ```
 
 The streamlit dashboard should be now available at http://localhost:8502. 
@@ -78,3 +79,4 @@ After running `start.sh`:
 | `elastic-start-local` | Contains all scripts as well as configurations to setup a single-node Elastic cluster |
 | `.github/workflows` | YAML file for the Github actions (CI/CD) |
 | `main.tf` | Terraform (infrastructure as code tool) configuration file |
+| `variables.tf` | Terraform variables |
