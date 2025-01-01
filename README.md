@@ -81,4 +81,4 @@ After running `start.sh`:
 | `main.tf` | Terraform (infrastructure as code tool) configuration file |
 | `variables.tf` | Terraform variables |
 | `playbook.yml` | Ansible playbook (automation of cloning the git repo on selected machines (with ssh access)) |
-| `inventory.yml` | |Ansible inventory |
+| `inventory.yml` | Ansible inventory (remote managed nodes) |
