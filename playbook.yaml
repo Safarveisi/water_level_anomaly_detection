@@ -1,0 +1,42 @@
+- name: Github play
+  hosts: myhosts
+  gather_facts: false
+  vars:
+    home_directory: /home/ssafarveisi
+    ansible_python_interpreter: /usr/bin/python3.11
+  
+  vars_prompt:
+
+    - name: parent_directory
+      prompt: Name of the parent directory
+      private: no
+  
+  tasks:
+    
+    - name: Whether or not the parent directory exists
+      ansible.builtin.stat:
+        path: "{{ home_directory }}/{{ parent_directory }}" 
+      register: parent_dir_exists
+      delegate_to: 85.215.182.83
+
+    - name: Create parent directory
+      ansible.builtin.file:
+        path: "{{ home_directory }}/{{ parent_directory }}"
+        state: directory
+      when: not parent_dir_exists.stat.isdir is defined 
+      delegate_to: 85.215.182.83
+    
+    - name: Whether or not the repository has already been cloned locally
+      ansible.builtin.stat:
+        dest: "{{ home_directory }}/{{ parent_directory }}/water_level_anomaly_detection"
+      register: repo_exists_result
+      delegate_to: 85.215.182.83
+
+    - name: Clone Github Repo
+      ansible.builtin.git:
+        repo: https://github.com/Safarveisi/water_level_anomaly_detection.git
+        dest: "{{ home_directory }}/{{ parent_directory }}/water_level_anomaly_detection"
+        single_branch: yes
+        version: master
+      when: not repo_exists_result.stat.isdir is defined
+      delegate_to: 85.215.182.83

@@ -80,3 +80,5 @@ After running `start.sh`:
 | `.github/workflows` | YAML file for the Github actions (CI/CD) |
 | `main.tf` | Terraform (infrastructure as code tool) configuration file |
 | `variables.tf` | Terraform variables |
+| `playbook.yml` | Ansible playbook (automation of cloning the git repo on selected machines (with ssh access)) |
+| `inventory.yml` | |Ansible inventory |
