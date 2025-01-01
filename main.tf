@@ -9,13 +9,13 @@ terraform {
 
 provider "docker" {}
 
-resource "docker_image" "novelty" {
-  name         = "ciaa/novelty:24.12.30"
+resource "docker_image" "app_image" {
+  name         = "ciaa/${var.docker_repo}:${var.image_tag}"
   keep_locally = false
 }
 
-resource "docker_container" "novelty" {
-  image = docker_image.novelty.image_id
+resource "docker_container" "app_container" {
+  image = docker_image.app_image.image_id
   name  = "terraform-docker"
 
   ports {
