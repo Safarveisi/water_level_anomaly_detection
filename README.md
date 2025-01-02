@@ -66,6 +66,10 @@ After running `start.sh`:
 - Elasticsearch will be running at http://localhost:9200
 - Kibana will be running at http://localhost:5601
 
+## Diagram
+
+![Diagram of components](./diagram/comp.png "Diagram of components")
+
 ## Table of files and directories
 
 |           File/Directory        |             Description           |
