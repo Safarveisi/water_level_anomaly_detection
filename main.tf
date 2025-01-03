@@ -11,7 +11,7 @@ provider "docker" {}
 
 resource "docker_image" "app_image" {
   name         = "ciaa/${var.docker_repo}:${var.image_tag}"
-  keep_locally = false
+  keep_locally = true
 }
 
 resource "docker_container" "app_container" {

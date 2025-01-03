@@ -1,22 +1,48 @@
-FROM python:3.9-slim
+FROM python:3.9-slim AS python-base
+    
+    # Disables buffering
+ENV PYTHONUNBUFFERED=1 \
+    # Prevents Python from creating .pyc files
+    PYTHONDONTWRITEBYTECODE=1 \
+    # Disables the cache
+    PIP_NO_CACHE_DIR=off \
+    # Don't check for new versions of pip to download
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_DEFAULT_TIMEOUT=100 \
+    POETRY_VERSION=1.8.3 \
+    # This is where poetry is installed
+    POETRY_HOME=/opt/poetry \
+    # Creates a virtual env dir (.venv) in the project root dir
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1 \
+    PYSETUP_PATH=/opt/pysetup \
+    VENV_PATH=/opt/pysetup/.venv
 
-ENV user=developer
+# Prepend poetry and venv to path
+ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
-RUN useradd -m -d /home/${user} ${user} && \
-    chown -R ${user} /home/${user} && \
-    apt-get update && apt-get install -y curl && \
-    rm -rf /var/lib/apt/lists/*
+FROM python-base AS builder-base
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+    # Deps for installing poetry
+    curl
 
-USER ${user}
-WORKDIR /home/${user}
+# Install poetry - respects $POETRY_VERSION & $POETRY_HOME
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
-ENV PATH=/home/${user}/.local/bin:$PATH
+# Copy project requirement files here to ensure they will be cached
+WORKDIR $PYSETUP_PATH
+COPY poetry.lock pyproject.toml ./
 
-COPY pyproject.toml poetry.lock water_level_anomaly_detection/ ./
+# Install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
+RUN poetry install --no-root --without dev
 
-# Install poetry (package mode: FALSE)
-RUN curl -sSL https://install.python-poetry.org | python3 - && poetry install --no-root
+
+FROM python-base AS serve
+
+COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
+COPY water_level_anomaly_detection/ ./
 
 EXPOSE 8501
 
-ENTRYPOINT [ "poetry", "run", "streamlit", "run", "app.py" ]
+CMD [ "streamlit", "run", "app.py" ]
