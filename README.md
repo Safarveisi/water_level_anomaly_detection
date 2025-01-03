@@ -68,7 +68,7 @@ After running `start.sh`:
 
 ## Diagram
 
-![Diagram of components](./diagram/comp.png "Diagram of components")
+![Diagram of components](./diagrams/comp.png "Diagram of components")
 
 ## Table of files and directories
 
