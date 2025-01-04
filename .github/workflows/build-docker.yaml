@@ -26,7 +26,8 @@ jobs:
       - name: Set up Kubectl
         uses: azure/setup-kubectl@v4
 
-      - uses: Azure/k8s-set-context@v4
+      - name: Set K8s context
+        uses: Azure/k8s-set-context@v4
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
