@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: novelty-deployment
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: novelty-app
+  template:
+    metadata:
+      labels:
+        app: novelty-app
+    spec:
+      containers:
+        - name: novelty-app
+          image: docker.io/ciaa/novelty:25.01.04
+          resources:
+            limits:
+              memory: "2000Mi"
+              cpu: "2000m"
+          ports:
+            - containerPort: 8501
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: novelty-service
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    app: novelty-app
+  ports:
+    - protocol: TCP
+      port: 8501
+      targetPort: 8501
+      nodePort: 31001

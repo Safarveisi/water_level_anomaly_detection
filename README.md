@@ -85,3 +85,5 @@ After running `start.sh`:
 | `terraform/` | Terraform configuration files for each provider |
 | `playbook.yml` | Ansible playbook (automation of cloning the git repo on selected machines (with ssh access)) |
 | `inventory.yml` | Ansible inventory (remote managed nodes) |
+| `helper/` | Contains all helper modules |
+| `deploy/` | Contains manifest files to deploy the app on K8s |
