@@ -32,8 +32,6 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
       - name: Update and Deploy to Kubernetes
-        env:
-          IMAGE_TAG: $(date +%y.%m.%d)
         run: |
-          sed -i "s|image: docker.io/ciaa/novelty:.*|image: docker.io/ciaa/novelty:${IMAGE_TAG}|" deploy/k8s/deployment.yml
+          sed -i "s|image: docker.io/ciaa/novelty:.*|image: docker.io/ciaa/novelty:$(date +%y.%m.%d)|" deploy/k8s/deployment.yml
           kubectl apply -f deploy/k8s/deployment.yml
