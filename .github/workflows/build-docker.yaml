@@ -26,9 +26,12 @@ jobs:
       - name: Set up Kubectl
         uses: azure/setup-kubectl@v4
 
+      - uses: Azure/k8s-set-context@v4
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
       - name: Update and Deploy to Kubernetes
         env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
           IMAGE_TAG: $(date +%y.%m.%d)
         run: |
           sed -i "s|image: docker.io/ciaa/novelty:.*|image: docker.io/ciaa/novelty:${IMAGE_TAG}|" deploy/k8s/deployment.yml
