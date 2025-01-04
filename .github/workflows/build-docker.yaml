@@ -9,13 +9,27 @@ on:
       - 'poetry.lock'
       - 'Dockerfile'
 jobs:
-  build: 
+  build-and-deploy: 
     runs-on: ubuntu-latest
     steps:
+
       - uses: actions/checkout@v4
+
       - name: Build the docker image
         run: docker build . --file Dockerfile --tag ciaa/novelty:$(date +%y.%m.%d)
+
       - name: Push the docker image to docker hub
         run: |
           echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ciaa --password-stdin
           docker push ciaa/novelty:$(date +%y.%m.%d)
+
+      - name: Set up Kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Update and Deploy to Kubernetes
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+          IMAGE_TAG: $(date +%y.%m.%d)
+        run: |
+          sed -i "s|image: docker.io/ciaa/novelty:.*|image: docker.io/ciaa/novelty:${IMAGE_TAG}|" deploy/k8s/deployment.yml
+          kubectl apply -f deploy/k8s/deployment.yml
