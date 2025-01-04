@@ -74,15 +74,14 @@ After running `start.sh`:
 
 |           File/Directory        |             Description           |
 |:-------------------------------:|:---------------------------------:|
-| `water_level_anomaly_detection` | Contains all source code for the application. |
+| `water_level_anomaly_detection/` | Contains all source code for the application. |
 | `.python-version` | Specifies the Python version used in app development. |
 | `build-image.sh` | Script to build the Docker image; logs are directed to `build_image.log`. |
 | `Dockerfile` | Provides instructions to build the Docker image. |
 | `run-docker-app.sh` | Script to launch the Docker container and instantiate the app. |
 | `setup-env.sh` | Script to set up the virtual environment and install development dependencies in the dev mode. | 
-| `elastic-start-local` | Contains all scripts as well as configurations to setup a single-node Elastic cluster |
+| `elastic-start-local/` | Contains all scripts as well as configurations to setup a single-node Elastic cluster |
 | `.github/workflows` | YAML file for the Github actions (CI/CD) |
-| `main.tf` | Terraform (infrastructure as code tool) configuration file |
-| `variables.tf` | Terraform variables |
+| `terraform/` | Terraform configuration files for each provider |
 | `playbook.yml` | Ansible playbook (automation of cloning the git repo on selected machines (with ssh access)) |
 | `inventory.yml` | Ansible inventory (remote managed nodes) |
