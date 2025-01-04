@@ -12,13 +12,10 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--id", help="Managed Kubernetes cluster id")
-
-    # Absolute path to the parent directory of the current directory
-    par_dir_path = os.path.dirname(os.path.dirname(__file__))
     parser.add_argument(
         "--output",
-        default=os.path.join(par_dir_path, "kubeconfig.yml"),
-        help="Absolute path to output YAML file",
+        default=os.path.dirname(os.path.dirname(__file__)),
+        help="Absolute path to the directory where output YAML file will live",
     )
     args = parser.parse_args()
 
@@ -37,7 +34,8 @@ if __name__ == "__main__":
         print(f"Error processing YAML content: {e}")
         exit(1)
 
-    with open(args.output, "w") as yaml_file:
+    target_path = os.path.join(args.output, "kubeconfig.yml")
+    with open(target_path, "w") as yaml_file:
         yaml.safe_dump(yaml_content, yaml_file, default_flow_style=False)
 
-    print(f"Kubeconfig has been written to {args.output}")
+    print(f"Kubeconfig has been written to {target_path}")
