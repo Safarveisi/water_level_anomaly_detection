@@ -83,9 +83,12 @@ k9s --kubeconfig absolute/path/to/kubeconfig.yml # You get one after creating a 
 ![Diagram of components](./pictures/status.png "Status of K8s deployment (success)")
 
 
-## Diagram
+## Diagram 
 
 ![Diagram of components](./diagrams/comp.png "Diagram of components")
+
+Please be aware that the diagram above illustrates only the local deployment (represented in the `serve` area).
+
 
 ## Table of files and directories
 
