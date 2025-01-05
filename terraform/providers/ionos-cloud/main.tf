@@ -8,7 +8,9 @@ terraform {
 }
 
 provider "ionoscloud" {
-    token = "${var.ionos_token}"
+    # For his authorization to work, 
+    # environment variable TF_VAR_ionos_cloud must be available 
+    token = "${var.ionos_token}" 
 }
 
 resource "ionoscloud_k8s_cluster" "example" {

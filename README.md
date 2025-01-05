@@ -41,7 +41,7 @@ To destroy the docker container, run:
 terraform destroy
 ``` 
 
-## Monotoring the app logs (local deployment)
+## Monitoring the app logs (local deployment)
 
 We use `Filebeat --> Elasticsearch --> Kibana` stack to monitor the logs of the docker container spawned above (logs are located at `/var/lib/docker/containers` of the host machine). All three services will run in their own docker containers. First, change the working directory to `/elastic-start-local`.
 
