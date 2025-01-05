@@ -109,3 +109,10 @@ Some files or folders have been omitted from the description because they are no
 | `inventory.yml` | Ansible inventory (remote managed nodes) |
 | `helper/` | Contains all helper modules |
 | `deploy/` | Contains manifest files to deploy the app on K8s |
+
+
+## Extra
+
+### Ansible
+
+We use Ansible to automate the process of cloning a Git repository on target servers to which we have SSH access. This approach allows us to replicate the repository on multiple servers without the need for manual work. Refer to `playbook.yml` for the tasks involved and `inventory.yml` for the list of target servers.  
