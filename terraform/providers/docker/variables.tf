@@ -1,7 +1,7 @@
 variable "image_tag" {
     description = "Tag of the image using which a docker container is created"
     type = string
-    default = "0.1.0"
+    default = "25.01.06"
 }
 
 variable "docker_repo" {
