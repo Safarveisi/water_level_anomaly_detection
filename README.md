@@ -82,6 +82,13 @@ k9s --kubeconfig absolute/path/to/kubeconfig.yml # You get one after creating a 
 ```
 ![Diagram of components](./pictures/status.png "Status of K8s deployment (success)")
 
+After successfully deploying the app on the K8s cluster, you can access it by navigating to `http://<k8s-node-ip>:31001`. Keep in mind that the `deployment.yaml` file specifies `replicas: 2`, so one of the replicas will be located on a different node (if available).
+
+You can get the IP of the nodes by:
+
+```bash
+kubectl --kubeconfig absolute/path/to/kubeconfig.yml get nodes -o wide
+```
 
 ## Diagram 
 
