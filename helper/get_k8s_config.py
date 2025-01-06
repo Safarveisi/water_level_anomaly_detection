@@ -6,7 +6,7 @@ import yaml
 
 def get_ionos_k8s_kubeconfig(k8s_cluster_id: str, target_dir_path: str) -> None:
     """Calls IONOS cloud API to get the k8s cluster's kubeconfig.yml
-    file and saves it as a yaml file in target_dir_path.
+    file and saves it in target_dir_path.
 
     Parameters
     ==========
