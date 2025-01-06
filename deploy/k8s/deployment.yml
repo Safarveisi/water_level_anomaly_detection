@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: novelty-app
-          image: docker.io/ciaa/novelty:25.01.04
+          image: docker.io/ciaa/novelty:0.1.0
           resources:
             limits:
               memory: "2000Mi"
