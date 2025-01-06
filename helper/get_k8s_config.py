@@ -3,13 +3,11 @@ import argparse
 import requests
 import yaml
 
-def get_ionos_k8s_kubeconfig(
-    k8s_cluster_id: str,
-    target_dir_path: str
-) -> None:
+
+def get_ionos_k8s_kubeconfig(k8s_cluster_id: str, target_dir_path: str) -> None:
     """Calls IONOS cloud API to get the k8s cluster's kubeconfig.yml
-    file and saves it as a yaml file in target_dir_path. 
-    
+    file and saves it as a yaml file in target_dir_path.
+
     Parameters
     ==========
     k8s_cluster_id: str
@@ -19,10 +17,15 @@ def get_ionos_k8s_kubeconfig(
         The directory in which the kubeconfig.yml will live.
     """
     try:
-        ionos_token = os.environ["TF_VAR_ionos_token"]
+        ionos_token = os.environ.get(
+            "TF_VAR_ionos_token", os.environ["IONOS_CLOUD_TOKEN"]
+        )
     except KeyError:
-        print("Please set TF_VAR_ionos_token env variable first.")
-    
+        print(
+            "Please set either TF_VAR_ionos_token or IONOS_CLOUD_TOKEN "
+            "env variable first."
+        )
+
     response = requests.get(
         f"https://api.ionos.com/cloudapi/v6/k8s/{k8s_cluster_id}/kubeconfig",
         headers={
@@ -56,7 +59,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    get_ionos_k8s_kubeconfig(
-        k8s_cluster_id=args.id,
-        target_dir_path=args.output
-    )
+    get_ionos_k8s_kubeconfig(k8s_cluster_id=args.id, target_dir_path=args.output)
