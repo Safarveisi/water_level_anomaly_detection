@@ -1,6 +1,5 @@
 FROM python:3.9-slim AS python-base
 
-
     # Disables buffering
 ENV PYTHONUNBUFFERED=1 \
     # Prevents Python from creating .pyc files
@@ -36,7 +35,7 @@ WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 
 # Install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --no-root --without dev
+RUN poetry install --without dev
 
 
 FROM python-base AS serve

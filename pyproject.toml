@@ -1,7 +1,6 @@
 [tool.poetry]
 description = "Water level anomaly detection"
 authors = ["Sajad Safarveisi"]
-readme = "README.md"
 package-mode = false
 
 [tool.poetry.dependencies]
