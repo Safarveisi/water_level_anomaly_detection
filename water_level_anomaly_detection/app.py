@@ -20,7 +20,6 @@ ch.setLevel(logging.INFO)
 logger.addHandler(ch)
 
 
-@st.cache_data(ttl="20m")
 def detection(df_ref: pd.DataFrame, df_pred: pd.DataFrame) -> pd.DataFrame:
     logger.info("Running novelty detection ...")
 
@@ -36,7 +35,6 @@ def detection(df_ref: pd.DataFrame, df_pred: pd.DataFrame) -> pd.DataFrame:
     return df_pred
 
 
-@st.cache_data(ttl="30m")
 def get_station_data(
     uuid: str,
 ) -> Tuple[Optional[pd.DataFrame], Optional[pd.DataFrame]]:
@@ -71,7 +69,7 @@ else:
     msg = "Fetching new measurements successful!"
     st.write(msg)
     logger.info(msg)
-    
+
     if df_pred.empty or df_ref.empty:
         msg = """
         Either reference or prediction data frames

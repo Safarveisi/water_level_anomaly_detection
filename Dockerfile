@@ -1,6 +1,6 @@
 FROM python:3.9-slim AS python-base
 
-    # Disables buffering
+# Disables buffering
 ENV PYTHONUNBUFFERED=1 \
     # Prevents Python from creating .pyc files
     PYTHONDONTWRITEBYTECODE=1 \
@@ -39,6 +39,15 @@ RUN poetry install --without dev
 
 
 FROM python-base AS serve
+
+# Create a non-root user and group (necessary for Streamlit to function properly)
+RUN groupadd --gid 1000 appuser && \
+    useradd --uid 1000 --gid appuser --shell /bin/bash --create-home appuser
+
+# Switch to the new user
+USER appuser
+
+WORKDIR /home/appuser
 
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY water_level_anomaly_detection/ ./
