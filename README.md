@@ -75,7 +75,7 @@ After running `start.sh`:
 ## CI/CD (remote deployment)
 
 We utilize GitHub Actions, triggered by each push to the `master` branch, to build a new Docker image, push it to Docker Hub, and deploy it to a Kubernetes cluster hosted on IONOS Cloud (see `.github/workflows/build-and-deploy.yml` for details). To enable this workflow, a Kubernetes cluster must be available (provisioned using Terraform - please see `terraform/ionos-cloud`), with its `KUBECONFIG` set as a secret in the repository. Additionally, the `DOCKER_HUB_TOKEN` needs to be stored as a secret to execute the docker login step in the workflow (named as `Push the docker image to Docker Hub`). We use [k9s](https://k9scli.io/)
-to check the status/sucess of the deployment on the K8s cluster (please see an image of a successful deployment below).
+to check the status/success of the deployment on the K8s cluster (please see an image of a successful deployment below).
 
 ```bash
 k9s --kubeconfig absolute/path/to/kubeconfig.yml # You get one after creating a K8s cluster (please see helper/get_k8s_config.py)
