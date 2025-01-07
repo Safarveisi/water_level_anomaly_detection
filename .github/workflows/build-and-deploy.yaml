@@ -16,12 +16,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build the docker image
-        run: docker build . --file Dockerfile --tag ciaa/novelty:$(date +%y.%m.%d)
+        run: docker build . --file Dockerfile --tag ciaa/anomaly:$(date +%y.%m.%d)
 
       - name: Push the docker image to docker hub
         run: |
           echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ciaa --password-stdin
-          docker push ciaa/novelty:$(date +%y.%m.%d)
+          docker push ciaa/anomaly:$(date +%y.%m.%d)
 
       - name: Set up Kubectl
         uses: azure/setup-kubectl@v4
@@ -33,5 +33,5 @@ jobs:
 
       - name: Update and Deploy to Kubernetes
         run: |
-          sed -i "s|image: docker.io/ciaa/novelty:.*|image: docker.io/ciaa/novelty:$(date +%y.%m.%d)|" deploy/k8s/deployment.yml
+          sed -i "s|image: docker.io/ciaa/anomaly:.*|image: docker.io/ciaa/anomaly:$(date +%y.%m.%d)|" deploy/k8s/deployment.yml
           kubectl apply -f deploy/k8s/deployment.yml

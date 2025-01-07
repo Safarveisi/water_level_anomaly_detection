@@ -2,7 +2,7 @@
 
 # Version of the app (image tag)
 v=$1
-target_image=ciaa/novelty:$v
+target_image=ciaa/anomaly:$v
 # Get all local docker images
 images=$(docker images --format '{{.Repository}}:{{.Tag}}')
 

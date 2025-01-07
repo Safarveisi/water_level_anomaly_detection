@@ -3,4 +3,4 @@
 # TAG
 v=$1
 
-docker build . --no-cache --progress=plain --file Dockerfile --tag ciaa/novelty:$v &> build_image.log
+docker build . --no-cache --progress=plain --file Dockerfile --tag ciaa/anomaly:$v &> build_image.log

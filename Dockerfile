@@ -46,7 +46,6 @@ RUN groupadd --gid 1000 appuser && \
 
 # Switch to the new user
 USER appuser
-
 WORKDIR /home/appuser
 
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
