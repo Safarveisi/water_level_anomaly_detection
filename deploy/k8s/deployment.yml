@@ -16,6 +16,7 @@ spec:
       containers:
         - name: novelty-app
           image: ciaa/anomaly:0.1.0
+          imagePullPolicy: Always
           resources:
             limits:
               memory: "2000Mi"
