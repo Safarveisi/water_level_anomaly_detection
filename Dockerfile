@@ -1,6 +1,7 @@
 # Base python image
 FROM python:3.9-slim AS python-base
 
+
 # Disables buffering
 ENV PYTHONUNBUFFERED=1 \
     # Prevents Python from creating .pyc files
