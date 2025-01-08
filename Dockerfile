@@ -22,11 +22,11 @@ ENV PYTHONUNBUFFERED=1 \
 # Prepend poetry and venv to path
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
-# Dependencies
 FROM python-base AS builder-base
+
+# Dependencies for poetry
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-    # Deps for installing poetry
     curl
 
 # Install poetry - respects $POETRY_VERSION & $POETRY_HOME

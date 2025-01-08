@@ -8,8 +8,19 @@ on:
       - 'pyproject.toml'
       - 'poetry.lock'
       - 'Dockerfile'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'water_level_anomaly_detection/*.py'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - 'Dockerfile'
+    types:
+      - closed
 jobs:
   build-and-deploy: 
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
     runs-on: ubuntu-24.04
     steps:
 
