@@ -1,4 +1,4 @@
-# Base image
+# Base python image
 FROM python:3.9-slim AS python-base
 
 # Disables buffering
