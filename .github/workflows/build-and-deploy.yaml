@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            name=docker.io/ciaa/anomaly
+            name=ciaa/anomaly
           tags: |
             type=sha,format=short
       
@@ -41,6 +41,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          push: true
           context: .
           tags: ${{ steps.meta.outputs.tags }}
 
@@ -54,5 +55,5 @@ jobs:
 
       - name: Update and Deploy to Kubernetes
         run: |
-          sed -i "s|image: docker.io/ciaa/anomaly:.*|image: ${{ steps.meta.outputs.tags }}|" deploy/k8s/deployment.yml
+          sed -i "s|image: ciaa/anomaly:.*|image: ${{ steps.meta.outputs.tags }}|" deploy/k8s/deployment.yml
           kubectl apply -f deploy/k8s/deployment.yml
