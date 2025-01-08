@@ -54,5 +54,5 @@ jobs:
 
       - name: Update and Deploy to Kubernetes
         run: |
-          sed -i "s|image: docker.io/ciaa/anomaly:.*|image: docker.io/ciaa/anomaly:${{ steps.meta.outputs.tags }}|" deploy/k8s/deployment.yml
+          sed -i "s|image: docker.io/ciaa/anomaly:.*|image: ${{ steps.meta.outputs.tags }}|" deploy/k8s/deployment.yml
           kubectl apply -f deploy/k8s/deployment.yml
