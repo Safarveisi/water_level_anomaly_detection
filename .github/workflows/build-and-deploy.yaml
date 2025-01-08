@@ -13,15 +13,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Build the docker image
-        run: docker build . --file Dockerfile --tag ciaa/anomaly:$(date +%y.%m.%d)
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            name=docker.io/ciaa/anomaly
+          tags: |
+            type=sha,format=short
+      
+      - name: Login to Dockerfile
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ciaa
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
-      - name: Push the docker image to docker hub
-        run: |
-          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ciaa --password-stdin
-          docker push ciaa/anomaly:$(date +%y.%m.%d)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          tags: ${{ steps.meta.outputs.tags }}
 
       - name: Set up Kubectl
         uses: azure/setup-kubectl@v4
@@ -33,5 +54,5 @@ jobs:
 
       - name: Update and Deploy to Kubernetes
         run: |
-          sed -i "s|image: docker.io/ciaa/anomaly:.*|image: docker.io/ciaa/anomaly:$(date +%y.%m.%d)|" deploy/k8s/deployment.yml
+          sed -i "s|image: docker.io/ciaa/anomaly:.*|image: docker.io/ciaa/anomaly:${{ steps.meta.outputs.tags }}|" deploy/k8s/deployment.yml
           kubectl apply -f deploy/k8s/deployment.yml
