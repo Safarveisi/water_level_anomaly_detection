@@ -60,7 +60,7 @@ df_ref, df_pred = get_station_data(uuid=uuid)
 if df_pred is None or df_ref is None:
     msg = """
     There are no measurements for the requested station.
-    Please try agian later! :sleeping:
+    Please try again later! :sleeping:
     """
     st.write(msg)
     logger.error(msg)
