@@ -29,7 +29,8 @@ def detection(df_ref: pd.DataFrame, df_pred: pd.DataFrame) -> pd.DataFrame:
     # Feed the reference measurements to the ML model
     clf.fit(df_ref["value"].values.reshape(-1, 1))
 
-    # Add a new column to the data frame holding the detection results (1 --> normal, -1 --> abnormal)
+    # Add a new column to the data frame holding the detection results 
+    # (1 --> normal, -1 --> abnormal)
     df_pred["novelty"] = clf.predict(df_pred["value"].values.reshape(-1, 1))
 
     return df_pred
