@@ -135,7 +135,7 @@ Some files or folders have been omitted from the description because they are no
 | `inventory.yml` | Ansible inventory (remote managed nodes) |
 | `helper/` | Contains all helper modules |
 | `deploy/` | Contains manifest files to deploy the app on K8s |
-
+| `Taskfile.yml` | Helps automating the tasks using [Task](https://taskfile.dev/) |
 
 ## Extra
 

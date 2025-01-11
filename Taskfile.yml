@@ -1,0 +1,18 @@
+version: '3'
+
+tasks:
+
+  k8s:deploy:
+    cmds:
+      - kubectl --kubeconfig kubeconfig.yml apply -f deploy/k8s/deployment.yml
+    desc: Deploys resources into the K8s cluster
+  
+  k8s:delete:
+    cmds:
+      - kubectl --kubeconfig kubeconfig.yml delete -f deploy/k8s/deployment.yml
+    desc: Removes resources from the K8s cluster
+
+  k9s:watch:
+    cmds:
+      - k9s --kubeconfig kubeconfig.yml
+    desc: Uses K9s to watch the status of the deployment
