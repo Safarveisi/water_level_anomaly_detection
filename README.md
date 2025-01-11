@@ -2,6 +2,13 @@
 
 Novelty detection is a critical technique used in scenarios where a set of "normal" data is available and the aim is to identify "new" or "novel" data points that deviate from this established norm. Unlike outlier detection, which assumes the dataset may be mostly clean while containing a few outliers, novelty detection presumes the reference data for training is devoid of any anomalies. This approach is highly beneficial in environments where the concept of "novel" is relative to a predefined baseline of normalcy, and is applicable as incoming data is continuously assessed.
 
+
+## Prerequisites 
+
+To setup your development environment, you will need [devbox](https://www.jetify.com/docs/devbox/quickstart/).
+
+[![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
+
 ## Usage
 
 The app is deployed as a [Streamlit](https://streamlit.io/) dashboard and is accessible on port `8502` of your localhost. Users can select a station UUID from the `selectbox` to view water level measurements over the last hour (the prediction window) and detect any novelties. The unsupervised machine learning model is trained on a six-hour reference period, allowing it to identify novelties within the prediction window effectively.

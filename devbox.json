@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
+  "packages": [
+    "poetry@1.8.3",
+    "kubectl@1.29.2",
+    "k9s@0.31.9",
+    "docker@27.4.1",
+    "terraform@1.10.3",
+    "pyenv@2.3.36"
+  ],
+  "shell": {
+    "init_hook": [
+      "rm -rf .venv/"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
+    }
+  }
+}
