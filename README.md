@@ -7,6 +7,18 @@ Novelty detection is a critical technique used in scenarios where a set of "norm
 
 To setup your development environment, you will need [devbox](https://www.jetify.com/docs/devbox/quickstart/).
 
+Activate the shell using the following command (it may take some time as devbox tries to install all packages listed in `devbox.json` first):
+
+```bash
+devbox shell
+```
+
+Run the following to install python dependencies for the project using poetry:
+
+```bash
+./setup-env.sh
+```
+
 [![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
 
 ## Usage
