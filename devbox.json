@@ -12,8 +12,7 @@
   "shell": {
     "init_hook": [
       "source task.bash",
-      "alias tl='task --list-all'",
-      "alias t=task"
+      "alias tl='task --list-all'"
     ],
     "scripts": {
       "test": [

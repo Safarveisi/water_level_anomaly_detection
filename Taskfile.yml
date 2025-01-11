@@ -11,6 +11,11 @@ tasks:
     cmds:
       - kubectl --kubeconfig kubeconfig.yml delete -f deploy/k8s/deployment.yml
     desc: Removes resources from the K8s cluster
+  
+  k8s:logs:
+    cmds:
+      - read -p "Pod name:" name && kubectl --kubeconfig kubeconfig.yml logs $name 
+    desc: See the logs of a pod 
 
   k9s:watch:
     cmds:
