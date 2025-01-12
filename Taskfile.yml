@@ -1,23 +1,26 @@
 version: '3'
 
+vars:
+  KUBECONFIG: kubeconfig.yml
+
 tasks:
 
   k8s:deploy:
     cmds:
-      - kubectl --kubeconfig kubeconfig.yml apply -f deploy/k8s/deployment.yml
+      - kubectl --kubeconfig {{.KUBECONFIG}} apply -f deploy/k8s/deployment.yml
     desc: Deploys resources into the K8s cluster
   
   k8s:delete:
     cmds:
-      - kubectl --kubeconfig kubeconfig.yml delete -f deploy/k8s/deployment.yml
+      - kubectl --kubeconfig {{.KUBECONFIG}} delete -f deploy/k8s/deployment.yml
     desc: Removes resources from the K8s cluster
   
   k8s:logs:
     cmds:
-      - read -p "Pod name:" name && kubectl --kubeconfig kubeconfig.yml logs $name 
+      - kubectl --kubeconfig {{.KUBECONFIG}} logs {{.CLI_ARGS}}
     desc: See the logs of a pod 
 
   k9s:watch:
     cmds:
-      - k9s --kubeconfig kubeconfig.yml
+      - k9s --kubeconfig {{.KUBECONFIG}}
     desc: Uses K9s to watch the status of the deployment
