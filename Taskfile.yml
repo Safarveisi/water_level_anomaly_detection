@@ -41,8 +41,7 @@ tasks:
 
   k8s:remove-ingress-nginx-controller:
     cmds:
-      - |
-        helm --kubeconfig {{.KUBECONFIG}} uninstall ingress-nginx
+      - helm --kubeconfig {{.KUBECONFIG}} uninstall ingress-nginx
     desc: Removes ingress-nginx controller from the k8s cluster
 
   k9s:watch:
