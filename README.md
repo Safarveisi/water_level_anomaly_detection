@@ -93,6 +93,10 @@ After running `start.sh`:
 
 ## CI/CD (remote deployment)
 
+> [!Note]
+> Make sure the K8s cluster has already an ingress-ngnix controller. Please see 
+> `k8s:install-ingress-nginx-controller` in `Taskfile.yml`. 
+
 We utilize GitHub Actions, triggered by each push and pull request to the `master` branch, to build a new Docker image, push it to Docker Hub, and deploy it to a Kubernetes cluster hosted on IONOS Cloud (see `.github/workflows/build-and-deploy.yml` for details). To enable this workflow, a Kubernetes cluster must be available (provisioned using Terraform - please see `terraform/ionos-cloud`), with its `KUBECONFIG` set as a secret in the repository. Additionally, the `DOCKER_HUB_TOKEN` needs to be stored as a secret to enable workflow to log into docker hub and push the docker image built. We use [k9s](https://k9scli.io/)
 to check the status/success of the deployment on the K8s cluster later on (please see an image of a successful deployment below).
 
@@ -101,13 +105,19 @@ k9s --kubeconfig absolute/path/to/kubeconfig.yml # You get one after creating a 
 ```
 ![Diagram of components](./pictures/status.png "Status of K8s deployment (success)")
 
-After successfully deploying the app on the K8s cluster, you can access it by navigating to `http://<k8s-node-ip>:31001`. Keep in mind that the `deployment.yaml` file specifies `replicas: 2`, so one of the replicas will be located on a different node (if available).
-
-You can get the IP of the nodes by:
+After successfully deploying the app on the K8s cluster, you need to add the following to `/etc/hosts` on your host machine (here, `Ubuntu` machine):
 
 ```bash
-kubectl --kubeconfig absolute/path/to/kubeconfig.yml get nodes -o wide
+EXTERNAL_IP_INGRESS_NGNIX_LOAD_BALANCER  http://ionos.ingress-nginx.com
 ```
+
+You can get `EXTERNAL_IP_INGRESS_NGNIX_LOAD_BALANCER` by running the following in `devbox` shell:
+
+```bash
+task k8s:get-ingress-ngnix-lb-exter-ip 
+```
+
+You can now reach the app by navigating to `http://ionos.ingress-nginx.com`.
 
 ## Diagram 
 

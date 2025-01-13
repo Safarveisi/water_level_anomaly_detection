@@ -30,11 +30,31 @@ metadata:
   name: novelty-service
   namespace: default
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: novelty-app
   ports:
     - protocol: TCP
       port: 8501
       targetPort: 8501
-      nodePort: 31001
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: novelty-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ionos.ingress-nginx.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: novelty-service
+            port:
+              number: 8501

@@ -7,7 +7,8 @@
     "docker@27.4.1",
     "terraform@1.10.3",
     "pyenv@2.3.36",
-    "go-task@latest"
+    "go-task@latest",
+    "kubernetes-helm@3.15.4"
   ],
   "shell": {
     "init_hook": [
