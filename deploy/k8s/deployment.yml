@@ -17,12 +17,25 @@ spec:
         - name: novelty-app
           image: ciaa/anomaly:0.1.0
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8501
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 8501
           resources:
             limits:
               memory: "2000Mi"
+            requests:
+              memory: "2000Mi"
               cpu: "2000m"
-          ports:
-            - containerPort: 8501
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault     
 ---
 apiVersion: v1
 kind: Service

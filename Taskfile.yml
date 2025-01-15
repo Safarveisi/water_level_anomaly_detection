@@ -5,7 +5,7 @@ env:
   INGRESS_NGINX_URL: https://kubernetes.github.io/ingress-nginx
 
 vars:
-  KUBECONFIG: kubeconfig.yml
+  KUBECONFIG: '{{.KUBECONFIG| default "kubeconfig.yml"}}'
 
 tasks:
 
@@ -32,15 +32,17 @@ tasks:
   k8s:install-ingress-nginx-controller:
     cmds: 
       - |
-        helm --kubeconfig {{.KUBECONFIG}} upgrade --install \
-         ingress-nginx ingress-nginx --repo ${INGRESS_NGINX_URL}
+        helm --kubeconfig {{.KUBECONFIG}} upgrade --install ingress-nginx \
+          ingress-nginx --repo ${INGRESS_NGINX_URL}
     desc: Installs ingress-nginx controller (assuming that ingress resource has already been created)
 
   k8s:get-ingress-ngnix-lb-exter-ip:
     cmds:
-      - |
-        kubectl --kubeconfig {{.KUBECONFIG}} get service ingress-nginx-controller \
-          -o jsonpath='{.status.loadBalancer.ingress[0].ip}'  
+      - echo "{{.EXTERNAL_IP}}"
+    vars:
+      EXTERNAL_IP:
+        sh: "kubectl --kubeconfig {{.KUBECONFIG}} get service ingress-nginx-controller \
+          -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
     desc: Gets the External ip of the ingress-ngnix load balancer
 
   k8s:remove-ingress-nginx-controller:
