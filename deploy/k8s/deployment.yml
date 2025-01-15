@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: novelty-app
-          image: ciaa/anomaly:0.1.0
+          image: docker.io/ciaa/anomaly:0.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8501

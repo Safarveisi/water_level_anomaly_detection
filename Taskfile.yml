@@ -1,11 +1,13 @@
 version: '3'
 
 env:
+  DOMAIN: ionos.ingress-nginx.com
   CERT_MANAGER_REPO: https://github.com/cert-manager/cert-manager/releases/download/v1.16.2/cert-manager.yaml
   INGRESS_NGINX_URL: https://kubernetes.github.io/ingress-nginx
 
 vars:
   KUBECONFIG: '{{.KUBECONFIG| default "kubeconfig.yml"}}'
+  HOSTNAME: ionos.ingress-nginx.com
 
 tasks:
 
@@ -17,52 +19,54 @@ tasks:
   k8s:delete:
     cmds:
       - kubectl --kubeconfig {{.KUBECONFIG}} delete -f deploy/k8s/deployment.yml
-    desc: Removes resources from the K8s cluster
+    desc: Removes resources from the K8s cluster.
   
   k8s:logs:
     cmds:
       - kubectl --kubeconfig {{.KUBECONFIG}} logs {{.CLI_ARGS}}
-    desc: See the logs of a pod 
+    desc: See the logs of a pod. 
   
   k8s:storageclasses:
     cmds:
       - kubectl --kubeconfig {{.KUBECONFIG}} get storageclasses.storage.k8s.io
-    desc: Gets all storage classes available for the IONOS managed k8s cluster
+    desc: Gets all storage classes available for the IONOS managed k8s cluster.
 
   k8s:install-ingress-nginx-controller:
     cmds: 
       - |
         helm --kubeconfig {{.KUBECONFIG}} upgrade --install ingress-nginx \
           ingress-nginx --repo ${INGRESS_NGINX_URL}
-    desc: Installs ingress-nginx controller (assuming that ingress resource has already been created)
+    desc: Installs ingress-nginx controller (assuming that ingress resource has already been created).
 
   k8s:get-ingress-ngnix-lb-exter-ip:
     cmds:
-      - echo "{{.EXTERNAL_IP}}"
+      - sudo sed -i.bak -E "s/^[[:space:]]*[^[:space:]]+[[:space:]]*(${DOMAIN})[[:space:]]*/{{.EXTERNAL_IP}}  \1/" /etc/hosts
     vars:
       EXTERNAL_IP:
         sh: "kubectl --kubeconfig {{.KUBECONFIG}} get service ingress-nginx-controller \
           -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
-    desc: Gets the External ip of the ingress-ngnix load balancer
+    desc: |
+          Gets the External ip of the ingress-ngnix load balancer and adds it
+          to /etc/hosts with the DOMAIN given.
 
   k8s:remove-ingress-nginx-controller:
     cmds:
       - helm --kubeconfig {{.KUBECONFIG}} uninstall ingress-nginx
-    desc: Removes ingress-nginx controller from the k8s cluster
+    desc: Removes ingress-nginx controller from the k8s cluster.
 
   k8s:install-static-cert-manager:
     cmds:
       - |
         kubectl --kubeconfig {{.KUBECONFIG}} apply -f ${CERT_MANAGER_REPO}
-    desc: Installs cert-manager with default static configuration 
+    desc: Installs cert-manager with default static configuration. 
 
   k8s:configure-letsencrypt-issuer:
     cmds:
       - |
         kubectl --kubeconfig {{.KUBECONFIG}} apply -f deploy/k8s/tls-certificate-issuer.yml
-    desc: Configures a Let's Encrypt Issuer (https://acme-staging-v02.api.letsencrypt.org)
+    desc: Configures a Let's Encrypt Issuer (https://acme-staging-v02.api.letsencrypt.org).
 
   k9s:watch:
     cmds:
       - k9s --kubeconfig {{.KUBECONFIG}}
-    desc: Uses K9s to watch the status of the deployment
+    desc: Uses K9s to watch the status of the deployment.

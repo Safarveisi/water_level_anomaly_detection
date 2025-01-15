@@ -113,7 +113,7 @@ After successfully deploying the app on the K8s cluster, you need to add the fol
 EXTERNAL_IP_INGRESS_NGNIX_LOAD_BALANCER  http://ionos.ingress-nginx.com
 ```
 
-You can get `EXTERNAL_IP_INGRESS_NGNIX_LOAD_BALANCER` by running the following in `devbox` shell:
+You can get this done by running:
 
 ```bash
 task k8s:get-ingress-ngnix-lb-exter-ip 
