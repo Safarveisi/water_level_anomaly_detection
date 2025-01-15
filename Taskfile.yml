@@ -7,7 +7,6 @@ env:
 
 vars:
   KUBECONFIG: '{{.KUBECONFIG| default "kubeconfig.yml"}}'
-  HOSTNAME: ionos.ingress-nginx.com
 
 tasks:
 
