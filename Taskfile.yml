@@ -43,7 +43,7 @@ tasks:
     vars:
       EXTERNAL_IP:
         sh: "kubectl --kubeconfig {{.KUBECONFIG}} get service ingress-nginx-controller \
-          -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
+              -o jsonpath='{.status.loadBalancer.ingress[0].ip}'"
     desc: |
           Gets the External ip of the ingress-ngnix load balancer and adds it
           to /etc/hosts with the DOMAIN given.
