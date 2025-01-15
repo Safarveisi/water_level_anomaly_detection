@@ -35,7 +35,7 @@ spec:
     app: novelty-app
   ports:
     - protocol: TCP
-      port: 8501
+      port: 80
       targetPort: 8501
 ---
 apiVersion: networking.k8s.io/v1
@@ -44,9 +44,16 @@ metadata:
   name: novelty-ingress
   namespace: default
   annotations:
+    cert-manager.io/issuer: "letsencrypt-staging"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - ionos.ingress-nginx.com
+    secretName: letsencrypt-tls  
   rules:
   - host: ionos.ingress-nginx.com
     http:
@@ -57,4 +64,4 @@ spec:
           service:
             name: novelty-service
             port:
-              number: 8501
+              number: 80

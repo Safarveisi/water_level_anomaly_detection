@@ -94,8 +94,10 @@ After running `start.sh`:
 ## CI/CD (remote deployment)
 
 > [!Note]
-> Make sure the K8s cluster has already an ingress-ngnix controller. Please see 
-> `k8s:install-ingress-nginx-controller` in `Taskfile.yml`. 
+> With devbox shell activated, make sure to run 
+> `k8s:install-ingress-nginx-controller`, `k8s:install-static-cert-manager`, and 
+> `k8s:configure-letsencrypt-issuer` tasks in `Taskfile.yml` before reading the reset of 
+> this section. 
 
 We utilize GitHub Actions, triggered by each push and pull request to the `master` branch, to build a new Docker image, push it to Docker Hub, and deploy it to a Kubernetes cluster hosted on IONOS Cloud (see `.github/workflows/build-and-deploy.yml` for details). To enable this workflow, a Kubernetes cluster must be available (provisioned using Terraform - please see `terraform/ionos-cloud`), with its `KUBECONFIG` set as a secret in the repository. Additionally, the `DOCKER_HUB_TOKEN` needs to be stored as a secret to enable workflow to log into docker hub and push the docker image built. We use [k9s](https://k9scli.io/)
 to check the status/success of the deployment on the K8s cluster later on (please see an image of a successful deployment below).
